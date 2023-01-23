@@ -32,6 +32,7 @@ class LoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO:
     // Navigator.pushReplacement(
     //   context,
     //   MaterialPageRoute(builder: (context) => MyAppState()),
@@ -52,18 +53,32 @@ class LoadingScreen extends StatelessWidget {
   }
 }
 
-class MyAppState extends ChangeNotifier {
-  var animals = [
-    "Equine",
-    "Sheep/Goat",
-    "Camelid",
-    "Swine",
-    "Cattle",
-    "Dog",
-    "Cat"
-  ];
+enum Animal { equine, sheepGoat, camelid, swine, cattle, dog, cat }
 
-  void chooseAnimal() {
+String animalToString(Animal animal) {
+  switch (animal) {
+    case Animal.equine:
+      return 'Equine';
+    case Animal.sheepGoat:
+      return 'Sheep / Goat';
+    case Animal.camelid:
+      return 'Camelid';
+    case Animal.swine:
+      return 'Swine';
+    case Animal.cattle:
+      return 'Cattle';
+    case Animal.dog:
+      return 'Dog';
+    case Animal.cat:
+      return 'Cat';
+    default:
+      throw UnimplementedError('no string for $animal');
+  }
+}
+
+class MyAppState extends ChangeNotifier {
+  void chooseAnimal(Animal animal) {
+    // TODO: go to drug screen
     notifyListeners();
   }
 }
@@ -87,12 +102,13 @@ class _MyHomePageState extends State<MyHomePage> {
         page = const GeneratorPage();
         break;
       case 1:
-        page = SettingsPage();
+        page = const SettingsPage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
 
+    // TODO: add heading with app name
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         body: Row(
@@ -145,25 +161,29 @@ class GeneratorPage extends StatelessWidget {
         children: [
           const SizedBox(height: 25),
           Row(mainAxisSize: MainAxisSize.min, children: [
+            // EQUINE BUTTON
             SizedBox(
-              width: 100,
-              height: 100,
+              width: 150,
+              height: 150,
               child: ElevatedButton(
                 onPressed: () {
-                  //
+                  // MyAppState.chooseAnimal(Animal.equine);
                 },
-                child: Text(appState.animals[0]),
+                child: Text(animalToString(Animal.equine)),
               ),
             ),
-            const SizedBox(height: 25),
+
+            const SizedBox(width: 25),
+
+            // SHEEP GOAT BUTTON
             SizedBox(
-              width: 100,
-              height: 100,
+              width: 150,
+              height: 150,
               child: ElevatedButton(
                 onPressed: () {
                   //
                 },
-                child: Text(appState.animals[1]),
+                child: Text(animalToString(Animal.sheepGoat)),
               ),
             )
           ]),
@@ -171,25 +191,29 @@ class GeneratorPage extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
+              // CAMELID BUTTON
               SizedBox(
-                width: 100,
-                height: 100,
+                width: 150,
+                height: 150,
                 child: ElevatedButton(
                   onPressed: () {
                     //
                   },
-                  child: Text(appState.animals[2]),
+                  child: Text(animalToString(Animal.camelid)),
                 ),
               ),
-              const SizedBox(height: 25),
+
+              const SizedBox(width: 25),
+
+              // SWINE BUTTON
               SizedBox(
-                width: 100,
-                height: 100,
+                width: 150,
+                height: 150,
                 child: ElevatedButton(
                   onPressed: () {
                     //
                   },
-                  child: Text(appState.animals[3]),
+                  child: Text(animalToString(Animal.swine)),
                 ),
               )
             ],
@@ -198,25 +222,29 @@ class GeneratorPage extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
+              // CATTLE BUTTON
               SizedBox(
-                width: 100,
-                height: 100,
+                width: 150,
+                height: 150,
                 child: ElevatedButton(
                   onPressed: () {
                     //
                   },
-                  child: Text(appState.animals[3]),
+                  child: Text(animalToString(Animal.cattle)),
                 ),
               ),
-              const SizedBox(height: 25),
+
+              const SizedBox(width: 25),
+
+              // DOG BUTTON
               SizedBox(
-                width: 100,
-                height: 100,
+                width: 150,
+                height: 150,
                 child: ElevatedButton(
                   onPressed: () {
                     //
                   },
-                  child: Text(appState.animals[4]),
+                  child: Text(animalToString(Animal.dog)),
                 ),
               )
             ],
@@ -225,27 +253,17 @@ class GeneratorPage extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
+              // CAT BUTTON
               SizedBox(
-                width: 100,
-                height: 100,
+                width: 150,
+                height: 150,
                 child: ElevatedButton(
                   onPressed: () {
                     //
                   },
-                  child: Text(appState.animals[5]),
+                  child: Text(animalToString(Animal.cat)),
                 ),
               ),
-              const SizedBox(height: 25),
-              SizedBox(
-                width: 100,
-                height: 100,
-                child: ElevatedButton(
-                  onPressed: () {
-                    //
-                  },
-                  child: Text(appState.animals[6]),
-                ),
-              )
             ],
           ),
         ],
