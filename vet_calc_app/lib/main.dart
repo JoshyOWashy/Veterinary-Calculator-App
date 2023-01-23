@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'animals.dart';
 
+// Name idea: "Vet RX Calc"
+const appName = "Vet RX Calculator";
+
 void main() {
   runApp(const MyApp());
 }
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Vet Calculator',
+        title: appName,
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
@@ -55,9 +58,12 @@ class LoadingScreen extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
-  void chooseAnimal(Animal animal) {
+  // if I make this static, then notify listeners doesn't work
+  // if it's not static, then I can't call it
+  // not sure why, didn't really look into static enough to figure out
+  static void chooseAnimal(Animal animal) {
     // TODO: go to drug screen
-    notifyListeners();
+    // notifyListeners();
   }
 }
 
@@ -133,12 +139,13 @@ class GeneratorPage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
 
     return Center(
+      // TODO: add scroll, if screen is too small it cuts off the bottom
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Padding(
             padding: EdgeInsets.all(20),
-            child: Text('Vet Calculator',
+            child: Text(appName,
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
           ),
           const SizedBox(height: 25),
@@ -149,7 +156,7 @@ class GeneratorPage extends StatelessWidget {
               height: 150,
               child: ElevatedButton(
                 onPressed: () {
-                  // MyAppState.chooseAnimal(Animal.equine);
+                  MyAppState.chooseAnimal(Animal.equine);
                 },
                 child: Text(animalToString(Animal.equine)),
               ),
@@ -163,7 +170,7 @@ class GeneratorPage extends StatelessWidget {
               height: 150,
               child: ElevatedButton(
                 onPressed: () {
-                  // MyAppState.chooseAnimal(Animal.sheepGoat);
+                  MyAppState.chooseAnimal(Animal.sheepGoat);
                 },
                 child: Text(animalToString(Animal.sheepGoat)),
               ),
@@ -179,7 +186,7 @@ class GeneratorPage extends StatelessWidget {
                 height: 150,
                 child: ElevatedButton(
                   onPressed: () {
-                    // MyAppState.chooseAnimal(Animal.camelid);
+                    MyAppState.chooseAnimal(Animal.camelid);
                   },
                   child: Text(animalToString(Animal.camelid)),
                 ),
@@ -193,7 +200,7 @@ class GeneratorPage extends StatelessWidget {
                 height: 150,
                 child: ElevatedButton(
                   onPressed: () {
-                    // MyAppState.chooseAnimal(Animal.swine);
+                    MyAppState.chooseAnimal(Animal.swine);
                   },
                   child: Text(animalToString(Animal.swine)),
                 ),
@@ -210,7 +217,7 @@ class GeneratorPage extends StatelessWidget {
                 height: 150,
                 child: ElevatedButton(
                   onPressed: () {
-                    // MyAppState.chooseAnimal(Animal.cattle);
+                    MyAppState.chooseAnimal(Animal.cattle);
                   },
                   child: Text(animalToString(Animal.cattle)),
                 ),
@@ -224,7 +231,7 @@ class GeneratorPage extends StatelessWidget {
                 height: 150,
                 child: ElevatedButton(
                   onPressed: () {
-                    // MyAppState.chooseAnimal(Animal.dog);
+                    MyAppState.chooseAnimal(Animal.dog);
                   },
                   child: Text(animalToString(Animal.dog)),
                 ),
@@ -241,7 +248,7 @@ class GeneratorPage extends StatelessWidget {
                 height: 150,
                 child: ElevatedButton(
                   onPressed: () {
-                    // MyAppState.chooseAnimal(Animal.cat);
+                    MyAppState.chooseAnimal(Animal.cat);
                   },
                   child: Text(animalToString(Animal.cat)),
                 ),
@@ -267,6 +274,25 @@ class SettingsPage extends StatelessWidget {
         Padding(
           padding: EdgeInsets.all(20),
           child: Text('Settings'),
+        )
+      ],
+    );
+  }
+}
+
+// TODO:
+class DrugPage extends StatelessWidget {
+  const DrugPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    return ListView(
+      children: const [
+        Padding(
+          padding: EdgeInsets.all(20),
+          child: Text('Drugs'),
         )
       ],
     );
