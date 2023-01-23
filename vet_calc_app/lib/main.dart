@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'animals.dart';
 
 void main() {
   runApp(const MyApp());
@@ -53,29 +54,6 @@ class LoadingScreen extends StatelessWidget {
   }
 }
 
-enum Animal { equine, sheepGoat, camelid, swine, cattle, dog, cat }
-
-String animalToString(Animal animal) {
-  switch (animal) {
-    case Animal.equine:
-      return 'Equine';
-    case Animal.sheepGoat:
-      return 'Sheep / Goat';
-    case Animal.camelid:
-      return 'Camelid';
-    case Animal.swine:
-      return 'Swine';
-    case Animal.cattle:
-      return 'Cattle';
-    case Animal.dog:
-      return 'Dog';
-    case Animal.cat:
-      return 'Cat';
-    default:
-      throw UnimplementedError('no string for $animal');
-  }
-}
-
 class MyAppState extends ChangeNotifier {
   void chooseAnimal(Animal animal) {
     // TODO: go to drug screen
@@ -108,7 +86,6 @@ class _MyHomePageState extends State<MyHomePage> {
         throw UnimplementedError('no widget for $selectedIndex');
     }
 
-    // TODO: add heading with app name
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         body: Row(
@@ -159,6 +136,11 @@ class GeneratorPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const Padding(
+            padding: EdgeInsets.all(20),
+            child: Text('Vet Calculator',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+          ),
           const SizedBox(height: 25),
           Row(mainAxisSize: MainAxisSize.min, children: [
             // EQUINE BUTTON
@@ -181,7 +163,7 @@ class GeneratorPage extends StatelessWidget {
               height: 150,
               child: ElevatedButton(
                 onPressed: () {
-                  //
+                  // MyAppState.chooseAnimal(Animal.sheepGoat);
                 },
                 child: Text(animalToString(Animal.sheepGoat)),
               ),
@@ -197,7 +179,7 @@ class GeneratorPage extends StatelessWidget {
                 height: 150,
                 child: ElevatedButton(
                   onPressed: () {
-                    //
+                    // MyAppState.chooseAnimal(Animal.camelid);
                   },
                   child: Text(animalToString(Animal.camelid)),
                 ),
@@ -211,7 +193,7 @@ class GeneratorPage extends StatelessWidget {
                 height: 150,
                 child: ElevatedButton(
                   onPressed: () {
-                    //
+                    // MyAppState.chooseAnimal(Animal.swine);
                   },
                   child: Text(animalToString(Animal.swine)),
                 ),
@@ -228,7 +210,7 @@ class GeneratorPage extends StatelessWidget {
                 height: 150,
                 child: ElevatedButton(
                   onPressed: () {
-                    //
+                    // MyAppState.chooseAnimal(Animal.cattle);
                   },
                   child: Text(animalToString(Animal.cattle)),
                 ),
@@ -242,7 +224,7 @@ class GeneratorPage extends StatelessWidget {
                 height: 150,
                 child: ElevatedButton(
                   onPressed: () {
-                    //
+                    // MyAppState.chooseAnimal(Animal.dog);
                   },
                   child: Text(animalToString(Animal.dog)),
                 ),
@@ -259,7 +241,7 @@ class GeneratorPage extends StatelessWidget {
                 height: 150,
                 child: ElevatedButton(
                   onPressed: () {
-                    //
+                    // MyAppState.chooseAnimal(Animal.cat);
                   },
                   child: Text(animalToString(Animal.cat)),
                 ),
