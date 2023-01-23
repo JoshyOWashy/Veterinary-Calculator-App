@@ -143,43 +143,109 @@ class GeneratorPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 10),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(width: 10),
-              ElevatedButton(
+          const SizedBox(height: 25),
+          Row(mainAxisSize: MainAxisSize.min, children: [
+            SizedBox(
+              width: 100,
+              height: 100,
+              child: ElevatedButton(
                 onPressed: () {
                   //
                 },
                 child: Text(appState.animals[0]),
               ),
-              const SizedBox(width: 10),
-              ElevatedButton(
+            ),
+            const SizedBox(height: 25),
+            SizedBox(
+              width: 100,
+              height: 100,
+              child: ElevatedButton(
                 onPressed: () {
                   //
                 },
                 child: Text(appState.animals[1]),
               ),
-            ],
-          ),
+            )
+          ]),
+          const SizedBox(height: 25),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(width: 10),
-              ElevatedButton(
-                onPressed: () {
-                  //
-                },
-                child: Text(appState.animals[2]),
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: ElevatedButton(
+                  onPressed: () {
+                    //
+                  },
+                  child: Text(appState.animals[2]),
+                ),
               ),
-              const SizedBox(width: 10),
-              ElevatedButton(
-                onPressed: () {
-                  //
-                },
-                child: Text(appState.animals[3]),
+              const SizedBox(height: 25),
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: ElevatedButton(
+                  onPressed: () {
+                    //
+                  },
+                  child: Text(appState.animals[3]),
+                ),
+              )
+            ],
+          ),
+          const SizedBox(height: 25),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: ElevatedButton(
+                  onPressed: () {
+                    //
+                  },
+                  child: Text(appState.animals[3]),
+                ),
               ),
+              const SizedBox(height: 25),
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: ElevatedButton(
+                  onPressed: () {
+                    //
+                  },
+                  child: Text(appState.animals[4]),
+                ),
+              )
+            ],
+          ),
+          const SizedBox(height: 25),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: ElevatedButton(
+                  onPressed: () {
+                    //
+                  },
+                  child: Text(appState.animals[5]),
+                ),
+              ),
+              const SizedBox(height: 25),
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: ElevatedButton(
+                  onPressed: () {
+                    //
+                  },
+                  child: Text(appState.animals[6]),
+                ),
+              )
             ],
           ),
         ],
