@@ -118,11 +118,12 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Expanded(
+                child: SingleChildScrollView(
               child: Container(
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: page,
               ),
-            ),
+            )),
           ],
         ),
       );
@@ -139,7 +140,6 @@ class GeneratorPage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
 
     return Center(
-      // TODO: add scroll, if screen is too small it cuts off the bottom
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -255,6 +255,7 @@ class GeneratorPage extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 50),
         ],
       ),
     );
