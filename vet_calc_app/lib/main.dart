@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'animals.dart';
+import 'cattleDrugs.dart';
 
 // Name idea: "Vet RX Calc"
 const appName = "Vet RX Calculator";
@@ -239,7 +240,8 @@ class GeneratorPage extends StatelessWidget {
                     appState.chooseAnimal(Animal.cattle);
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const DrugPage()),
+                      MaterialPageRoute(
+                          builder: (context) => const SecondRoute()),
                     );
                   },
                   child: Text(animalToString(Animal.cattle)),
@@ -346,5 +348,31 @@ class DrugPage extends StatelessWidget {
     //     )
     //   ],
     // );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  const SecondRoute({super.key});
+
+  List<ElevatedButton> getCattleDrugs() {
+    List<ElevatedButton> drugList = [];
+    for (var drug in cattleDrugList) {
+      var newItem = ElevatedButton(onPressed: () {}, child: Text(drug));
+      drugList.add(newItem);
+    }
+
+    return drugList;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Second Route'),
+        ),
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: getCattleDrugs())));
   }
 }
