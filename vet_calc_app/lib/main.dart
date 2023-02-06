@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'animals.dart';
 import 'cattleDrugs.dart';
@@ -63,10 +64,23 @@ class MyAppState extends ChangeNotifier {
   // if it's not static, then I can't call it
   // not sure why, didn't really look into static enough to figure out
   var curAnimal = "";
+  var curDrug = "";
+  var curWeight = 0.0;
+
   void chooseAnimal(Animal animal) {
     curAnimal = animalToString(animal);
     notifyListeners();
     // TODO: go to drug screen
+  }
+
+  void chooseDrug(String drug) {
+    curDrug = drug;
+    notifyListeners();
+  }
+
+  void chooseWeight(String drug) {
+    curWeight = double.parse(drug);
+    notifyListeners();
   }
 }
 
@@ -142,7 +156,7 @@ class GeneratorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
-    debugPrint(appState.curAnimal);
+    // debugPrint(appState.curAnimal);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -314,14 +328,14 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
-// TODO:
+// TODO: Drug Page
 class DrugPage extends StatelessWidget {
   const DrugPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    debugPrint(appState.curAnimal);
+    // debugPrint(appState.curAnimal);
 
     var animal = appState.curAnimal;
 
@@ -351,21 +365,40 @@ class DrugPage extends StatelessWidget {
   }
 }
 
+//Temp Drug Page
+//merge this with DrugPage when we have database setup
 class SecondRoute extends StatelessWidget {
   const SecondRoute({super.key});
 
-  List<ElevatedButton> getCattleDrugs() {
-    List<ElevatedButton> drugList = [];
-    for (var drug in cattleDrugList) {
-      var newItem = ElevatedButton(onPressed: () {}, child: Text(drug));
-      drugList.add(newItem);
-    }
+  // List<ElevatedButton> getCattleDrugs() {
+  //   List<ElevatedButton> drugList = [];
+  //   for (var drug in cattleDrugList) {
+  //     var newItem = ElevatedButton(onPressed: () {}, child: Text(drug));
+  //     drugList.add(newItem);
+  //   }
 
-    return drugList;
-  }
+  //   return drugList;
+  // }
 
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+    var animal = appState.curAnimal;
+
+    List<ElevatedButton> drugList = [];
+    for (var drug in cattleDrugList) {
+      var newItem = ElevatedButton(
+          onPressed: () {
+            appState.chooseDrug(drug);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const WeightForm()),
+            );
+          },
+          child: Text(drug));
+      drugList.add(newItem);
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Second Route'),
@@ -373,6 +406,83 @@ class SecondRoute extends StatelessWidget {
         body: Center(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: getCattleDrugs())));
+                children: drugList)));
+  }
+}
+
+class WeightForm extends StatefulWidget {
+  const WeightForm({super.key});
+
+  @override
+  WeightFormState createState() {
+    return WeightFormState();
+  }
+}
+
+// Weight Page
+// TODO: show error when input is empty
+class WeightFormState extends State<WeightForm> {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    var animal = appState.curAnimal;
+    var drug = appState.curDrug;
+
+    final textController = TextEditingController();
+
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Weight of $animal'),
+        ),
+        body: Form(
+          key: _formKey,
+          child: Center(
+              //add some padding
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                TextFormField(
+                  controller: textController,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'(^\d*\.?\d*)'))
+                  ],
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Enter Weight for $animal in kg',
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a weight';
+                    }
+                    return null;
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          appState.chooseWeight(textController.text);
+                          debugPrint(
+                              "Weight ${textController.text} in WeightPage");
+                          debugPrint("Animal $animal in WeightPage");
+                          debugPrint("Drug $drug in WeightPage");
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('yay')),
+                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(builder: (context) => const DosagePage()),
+                          // );
+                        }
+                      },
+                      child: const Text("Calculate")),
+                )
+              ])),
+        ));
   }
 }
