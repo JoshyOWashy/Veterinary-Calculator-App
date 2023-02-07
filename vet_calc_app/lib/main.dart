@@ -435,7 +435,7 @@ class WeightFormState extends State<WeightForm> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Weight of $animal'),
+          title: Text('Weight of $animal  ($drug)'),
         ),
         body: Form(
           key: _formKey,
