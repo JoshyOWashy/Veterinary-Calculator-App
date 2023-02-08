@@ -13,6 +13,7 @@ class WeightForm extends StatefulWidget {
 }
 
 // Weight Page
+// TODO: show error when input is empty
 class WeightFormState extends State<WeightForm> {
   final _formKey = GlobalKey<FormState>();
 
