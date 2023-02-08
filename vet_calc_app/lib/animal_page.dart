@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'animals.dart';
 import 'main.dart';
+import 'drug_page.dart';
 
 // Main page
-class GeneratorPage extends StatelessWidget {
-  const GeneratorPage({super.key});
+class AnimalPage extends StatelessWidget {
+  const AnimalPage({super.key});
 
   @override
   Widget build(BuildContext context) {

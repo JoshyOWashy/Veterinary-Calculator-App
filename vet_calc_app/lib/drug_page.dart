@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'cattleDrugs.dart';
 import 'main.dart';
+import 'weight_page.dart';
 
 // TODO: Drug Page
 class DrugPage extends StatelessWidget {

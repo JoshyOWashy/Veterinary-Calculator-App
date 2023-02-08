@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'main.dart';
 
-// Loading screen
-class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({super.key});
+// Settings page
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO:
-    // Navigator.pushReplacement(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => MyAppState()),
-    // );
+    var appState = context.watch<MyAppState>();
 
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            CircularProgressIndicator(),
-            SizedBox(height: 20),
-            Text('Loading...'),
-          ],
-        ),
-      ),
+    return ListView(
+      children: const [
+        Padding(
+          padding: EdgeInsets.all(20),
+          child: Text('Settings'),
+        )
+      ],
     );
   }
 }
