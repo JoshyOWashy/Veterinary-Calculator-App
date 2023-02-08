@@ -32,33 +32,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Loading screen
-class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO:
-    // Navigator.pushReplacement(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => MyAppState()),
-    // );
-
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            CircularProgressIndicator(),
-            SizedBox(height: 20),
-            Text('Loading...'),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class MyAppState extends ChangeNotifier {
   // if I make this static, then notify listeners doesn't work
   // if it's not static, then I can't call it
@@ -70,7 +43,6 @@ class MyAppState extends ChangeNotifier {
   void chooseAnimal(Animal animal) {
     curAnimal = animalToString(animal);
     notifyListeners();
-    // TODO: go to drug screen
   }
 
   void chooseDrug(String drug) {
@@ -93,52 +65,53 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var selectedIndex = 0;
+  // var selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    Widget page;
-    switch (selectedIndex) {
-      case 0:
-        page = const GeneratorPage();
-        break;
-      case 1:
-        page = const SettingsPage();
-        break;
-      default:
-        throw UnimplementedError('no widget for $selectedIndex');
-    }
+    // Widget page;
+    // switch (selectedIndex) {
+    //   case 0:
+    //     page = const AnimalButtons();
+    //     break;
+    //   case 1:
+    //     page = const SettingsPage();
+    //     break;
+    //   default:
+    //     throw UnimplementedError('no widget for $selectedIndex');
+    // }
 
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         body: Row(
           children: [
-            SafeArea(
-              child: NavigationRail(
-                extended: constraints.maxWidth >= 600,
-                destinations: const [
-                  NavigationRailDestination(
-                    icon: Icon(Icons.home),
-                    label: Text('Home'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.settings),
-                    label: Text('Settings'),
-                  ),
-                ],
-                selectedIndex: selectedIndex,
-                onDestinationSelected: (value) {
-                  setState(() {
-                    selectedIndex = value;
-                  });
-                },
-              ),
-            ),
+            // SafeArea(
+            //   child: NavigationRail(
+            //     extended: constraints.maxWidth >= 600,
+            //     destinations: const [
+            //       NavigationRailDestination(
+            //         icon: Icon(Icons.home),
+            //         label: Text('Home'),
+            //       ),
+            //       NavigationRailDestination(
+            //         icon: Icon(Icons.settings),
+            //         label: Text('Settings'),
+            //       ),
+            //     ],
+            //     selectedIndex: selectedIndex,
+            //     onDestinationSelected: (value) {
+            //       setState(() {
+            //         selectedIndex = value;
+            //       });
+            //     },
+            //   ),
+            // ),
             Expanded(
                 child: SingleChildScrollView(
               child: Container(
                 color: Theme.of(context).colorScheme.primaryContainer,
-                child: page,
+                child: const AnimalButtons(),
+                // child: const page,
               ),
             )),
           ],
@@ -149,8 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 // Main page
-class GeneratorPage extends StatelessWidget {
-  const GeneratorPage({super.key});
+class AnimalButtons extends StatelessWidget {
+  const AnimalButtons({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -451,7 +424,7 @@ class WeightFormState extends State<WeightForm> {
                     FilteringTextInputFormatter.allow(RegExp(r'(^\d*\.?\d*)'))
                   ],
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     hintText: 'Enter Weight for $animal in kg',
                   ),
                   validator: (value) {
