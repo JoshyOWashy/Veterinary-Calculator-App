@@ -49,8 +49,8 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void chooseWeight(String drug) {
-    curWeight = double.parse(drug);
+  void chooseWeight(String weight) {
+    curWeight = double.parse(weight);
     notifyListeners();
   }
 }
