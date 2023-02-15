@@ -6,9 +6,9 @@ import 'main.dart';
 class DosagePage extends StatelessWidget {
   const DosagePage({super.key});
 
-  Future<Object?> databaseQuery() async {
+  Future<Object?> databaseQuery(animal) async {
     DatabaseReference ref =
-        FirebaseDatabase.instance.ref("Species/Cattle/Drugs");
+        FirebaseDatabase.instance.ref("Species/$animal/Drugs");
 
     DatabaseEvent event = await ref.once();
     //debugPrint("Snapshot type: ${event.type}");
@@ -30,21 +30,21 @@ class DosagePage extends StatelessWidget {
         title: Text('Drugs for $animal'),
       ),
       body: FutureBuilder(
-        future: databaseQuery(),
+        future: databaseQuery(animal),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             // data has been loaded, build the widget tree
             var data = snapshot.data as List<dynamic>;
 
             //debugPrint("Snapshot 2: $data");
-            var main_drug;
+            var mainDrug;
             for (var drug in data) {
               // debugPrint("Snapshot 3: $drug");
               if (drug['Name'] == drugname) {
-                main_drug = drug;
+                mainDrug = drug;
               }
             }
-            debugPrint("Snapshot 4: $main_drug");
+            debugPrint("Snapshot 4: $mainDrug");
 
             return Center(
               child: Column(
@@ -59,7 +59,7 @@ class DosagePage extends StatelessWidget {
             );
           } else {
             // data is still loading
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
