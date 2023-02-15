@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vet_calc_app/animal_page.dart';
 import 'animals.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 // Name idea: "Vet RX Calc"
 const appName = "Vet RX Calculator";
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -49,8 +56,8 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void chooseWeight(String drug) {
-    curWeight = double.parse(drug);
+  void chooseWeight(String weight) {
+    curWeight = double.parse(weight);
     notifyListeners();
   }
 }
@@ -82,40 +89,58 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
-        body: Row(
-          children: [
-            // SafeArea(
-            //   child: NavigationRail(
-            //     extended: constraints.maxWidth >= 600,
-            //     destinations: const [
-            //       NavigationRailDestination(
-            //         icon: Icon(Icons.home),
-            //         label: Text('Home'),
-            //       ),
-            //       NavigationRailDestination(
-            //         icon: Icon(Icons.settings),
-            //         label: Text('Settings'),
-            //       ),
-            //     ],
-            //     selectedIndex: selectedIndex,
-            //     onDestinationSelected: (value) {
-            //       setState(() {
-            //         selectedIndex = value;
-            //       });
-            //     },
-            //   ),
-            // ),
-            Expanded(
-                child: SingleChildScrollView(
-              child: Container(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                child: const AnimalPage(),
-                // child: const page,
-              ),
-            )),
-          ],
+        body: SafeArea(
+          child: Center(
+              child: SingleChildScrollView(
+            child: Container(
+              color: Theme.of(context).colorScheme.primaryContainer,
+              child: const AnimalPage(),
+            ),
+          )),
         ),
       );
     });
+
+    /*
+      OLD LAYOUT BUILDER IN CASE WE WANT TO SWITCH TO IS
+
+    */
+    // return LayoutBuilder(builder: (context, constraints) {
+    //   return Scaffold(
+    //     body: Row(
+    //       children: [
+    //         // SafeArea(
+    //         //   child: NavigationRail(
+    //         //     extended: constraints.maxWidth >= 600,
+    //         //     destinations: const [
+    //         //       NavigationRailDestination(
+    //         //         icon: Icon(Icons.home),
+    //         //         label: Text('Home'),
+    //         //       ),
+    //         //       NavigationRailDestination(
+    //         //         icon: Icon(Icons.settings),
+    //         //         label: Text('Settings'),
+    //         //       ),
+    //         //     ],
+    //         //     selectedIndex: selectedIndex,
+    //         //     onDestinationSelected: (value) {
+    //         //       setState(() {
+    //         //         selectedIndex = value;
+    //         //       });
+    //         //     },
+    //         //   ),
+    //         // ),
+    //         Expanded(
+    //             child: SingleChildScrollView(
+    //           child: Container(
+    //             color: Theme.of(context).colorScheme.primaryContainer,
+    //             child: const AnimalPage(),
+    //             // child: const page,
+    //           ),
+    //         )),
+    //       ],
+    //     ),
+    //   );
+    // });
   }
 }

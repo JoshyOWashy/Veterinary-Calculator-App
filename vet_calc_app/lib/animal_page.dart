@@ -33,7 +33,7 @@ class AnimalPage extends StatelessWidget {
                   appState.chooseAnimal(Animal.equine);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const DrugPage()),
+                    MaterialPageRoute(builder: (context) => const DrugPage1()),
                   );
                 },
                 child: Text(animalToString(Animal.equine)),
@@ -51,7 +51,7 @@ class AnimalPage extends StatelessWidget {
                   appState.chooseAnimal(Animal.sheepGoat);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const DrugPage()),
+                    MaterialPageRoute(builder: (context) => const DrugPage1()),
                   );
                 },
                 child: Text(animalToString(Animal.sheepGoat)),
@@ -71,7 +71,8 @@ class AnimalPage extends StatelessWidget {
                     appState.chooseAnimal(Animal.camelid);
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const DrugPage()),
+                      MaterialPageRoute(
+                          builder: (context) => const DrugPage1()),
                     );
                   },
                   child: Text(animalToString(Animal.camelid)),
@@ -89,7 +90,8 @@ class AnimalPage extends StatelessWidget {
                     appState.chooseAnimal(Animal.swine);
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const DrugPage()),
+                      MaterialPageRoute(
+                          builder: (context) => const DrugPage1()),
                     );
                   },
                   child: Text(animalToString(Animal.swine)),
@@ -110,8 +112,7 @@ class AnimalPage extends StatelessWidget {
                     appState.chooseAnimal(Animal.cattle);
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const SecondRoute()),
+                      MaterialPageRoute(builder: (context) => const DrugPage()),
                     );
                   },
                   child: Text(animalToString(Animal.cattle)),
@@ -129,7 +130,8 @@ class AnimalPage extends StatelessWidget {
                     appState.chooseAnimal(Animal.dog);
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const DrugPage()),
+                      MaterialPageRoute(
+                          builder: (context) => const DrugPage1()),
                     );
                   },
                   child: Text(animalToString(Animal.dog)),
@@ -150,7 +152,8 @@ class AnimalPage extends StatelessWidget {
                     appState.chooseAnimal(Animal.cat);
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const DrugPage()),
+                      MaterialPageRoute(
+                          builder: (context) => const DrugPage1()),
                     );
                   },
                   child: Text(animalToString(Animal.cat)),
