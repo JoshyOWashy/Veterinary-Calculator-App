@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1054015406612",
+    "firebase_url": "https://veterinary-application-bfb4e-default-rtdb.firebaseio.com",
+    "project_id": "veterinary-application-bfb4e",
+    "storage_bucket": "veterinary-application-bfb4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054015406612:android:2bfa13d4f088a1d534dd01",
+        "android_client_info": {
+          "package_name": "com.example.vet_calc_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054015406612-p1vhvbm6ac5535fgflm2i14rb16l30t3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5Db1MTk0vXi_KR-kIxC48cvsMjslzLvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054015406612-p1vhvbm6ac5535fgflm2i14rb16l30t3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1054015406612-8282o0p0f1dr9o7un0m9lahdssscj8v4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vetCalcApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,8 +5,8 @@ import 'main.dart';
 import 'weight_page.dart';
 
 // TODO: Drug Page
-class DrugPage extends StatelessWidget {
-  const DrugPage({super.key});
+class DrugPage1 extends StatelessWidget {
+  const DrugPage1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +42,9 @@ class DrugPage extends StatelessWidget {
 }
 
 //Temp Drug Page
-//merge this with DrugPage when we have database setup
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key});
+//TODO: query database to get drugs for specific animal
+class DrugPage extends StatelessWidget {
+  const DrugPage({super.key});
 
   // List<ElevatedButton> getCattleDrugs() {
   //   List<ElevatedButton> drugList = [];
@@ -77,7 +77,7 @@ class SecondRoute extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Second Route'),
+          title: Text('Drugs for $animal'),
         ),
         body: Center(
             child: Column(
