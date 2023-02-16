@@ -5,7 +5,6 @@ import 'animals.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-// Name idea: "Vet RX Calc"
 const appName = "Vet RX Calculator";
 
 Future<void> main() async {
@@ -17,7 +16,6 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-// Main app
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -29,7 +27,6 @@ class MyApp extends StatelessWidget {
         title: appName,
         theme: ThemeData(
           scrollbarTheme: ScrollbarThemeData(
-            // make scrollbar darker
             thumbColor: MaterialStateProperty.all(Colors.grey[800]),
           ),
           useMaterial3: true,
@@ -63,7 +60,6 @@ class MyAppState extends ChangeNotifier {
   }
 }
 
-// Home page
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -76,18 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Widget page;
-    // switch (selectedIndex) {
-    //   case 0:
-    //     page = const AnimalButtons();
-    //     break;
-    //   case 1:
-    //     page = const SettingsPage();
-    //     break;
-    //   default:
-    //     throw UnimplementedError('no widget for $selectedIndex');
-    // }
-
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         body: SafeArea(
