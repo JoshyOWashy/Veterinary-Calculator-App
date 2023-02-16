@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'cattleDrugs.dart';
 import 'main.dart';
 import 'weight_page.dart';
@@ -56,32 +57,70 @@ class DrugPage extends StatelessWidget {
   //   return drugList;
   // }
 
+  Future<Object?> databaseQuery(animal) async {
+    DatabaseReference ref =
+        FirebaseDatabase.instance.ref("Species/$animal/Drugs");
+
+    DatabaseEvent event = await ref.once();
+    //debugPrint("Snapshot type: ${event.type}");
+    //debugPrint("Snapshot: ${event.snapshot.value}");
+
+    //shows the data here
+
+    return event.snapshot.value;
+  }
+
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var animal = appState.curAnimal;
 
-    List<ElevatedButton> drugList = [];
-    for (var drug in cattleDrugList) {
-      var newItem = ElevatedButton(
-          onPressed: () {
-            appState.chooseDrug(drug);
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const WeightForm()),
-            );
-          },
-          child: Text(drug));
-      drugList.add(newItem);
-    }
-
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Drugs for $animal'),
-        ),
-        body: Center(
-            child: Column(
+      appBar: AppBar(
+        title: Text('Drugs for $animal'),
+      ),
+      body: FutureBuilder(
+        future: databaseQuery(animal),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            // data has been loaded, build the widget tree
+            var data = snapshot.data as List<dynamic>;
+
+            //debugPrint("Snapshot 2: $data");
+            List<ElevatedButton> drugList = [];
+            for (var drug in data) {
+              var newItem = ElevatedButton(
+                  onPressed: () {
+                    appState.chooseDrug(drug['Name']);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const WeightForm()),
+                    );
+                  },
+                  child: Text(drug['Name']));
+              drugList.add(newItem);
+            }
+
+            return Center(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: drugList)));
+                children: drugList,
+              ),
+            );
+          } else if (snapshot.hasError) {
+            // an error occurred while loading the data
+            return Center(
+              child: Text("Error: ${snapshot.error}"),
+            );
+          } else {
+            // data is still loading
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
+    );
   }
 }

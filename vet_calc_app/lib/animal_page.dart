@@ -152,8 +152,7 @@ class AnimalPage extends StatelessWidget {
                     appState.chooseAnimal(Animal.cat);
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const DrugPage1()),
+                      MaterialPageRoute(builder: (context) => const DrugPage()),
                     );
                   },
                   child: Text(animalToString(Animal.cat)),
