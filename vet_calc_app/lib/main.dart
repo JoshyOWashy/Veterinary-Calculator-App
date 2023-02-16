@@ -28,6 +28,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: appName,
         theme: ThemeData(
+          scrollbarTheme: ScrollbarThemeData(
+            // make scrollbar darker
+            thumbColor: MaterialStateProperty.all(Colors.grey[800]),
+          ),
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
               seedColor: const Color.fromARGB(255, 106, 107, 175)),
@@ -39,9 +43,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
-  // if I make this static, then notify listeners doesn't work
-  // if it's not static, then I can't call it
-  // not sure why, didn't really look into static enough to figure out
   var curAnimal = "";
   var curDrug = "";
   var curWeight = 0.0;
@@ -71,7 +72,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // var selectedIndex = 0;
+  final ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -91,12 +92,17 @@ class _MyHomePageState extends State<MyHomePage> {
       return Scaffold(
         body: SafeArea(
           child: Center(
-              child: SingleChildScrollView(
-            child: Container(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              child: const AnimalPage(),
-            ),
-          )),
+              // TODO: need scrollbar on other screens
+              child: Scrollbar(
+                  controller: scrollController,
+                  thumbVisibility: true,
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    child: Container(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      child: const AnimalPage(),
+                    ),
+                  ))),
         ),
       );
     });
