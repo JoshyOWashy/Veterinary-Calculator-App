@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
       return Scaffold(
         body: SafeArea(
           child: Center(
-              // TODO: change scrollbar color to be more visible
+              // TODO: need scrollbar on other screens
               child: Scrollbar(
                   controller: scrollController,
                   thumbVisibility: true,
