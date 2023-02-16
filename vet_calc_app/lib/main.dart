@@ -71,7 +71,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // var selectedIndex = 0;
+  final ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -91,12 +91,17 @@ class _MyHomePageState extends State<MyHomePage> {
       return Scaffold(
         body: SafeArea(
           child: Center(
-              child: SingleChildScrollView(
-            child: Container(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              child: const AnimalPage(),
-            ),
-          )),
+              // TODO: change scrollbar color to be more visible
+              child: Scrollbar(
+                  controller: scrollController,
+                  thumbVisibility: true,
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    child: Container(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      child: const AnimalPage(),
+                    ),
+                  ))),
         ),
       );
     });
