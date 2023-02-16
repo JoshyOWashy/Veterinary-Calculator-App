@@ -19,11 +19,47 @@ class DosagePage extends StatelessWidget {
     return event.snapshot.value;
   }
 
+  List getDosage(
+      double weight, double highDosage, double lowDosage, String units) {
+    //if theres only one dosage
+    int kgIdx = units.indexOf("kg");
+    String beginningSubstring = units.substring(0, kgIdx - 1);
+    String endSubstring = units.substring(kgIdx + 2);
+
+    String finalSubstring = beginningSubstring + endSubstring;
+
+    debugPrint("finalSubstring: $finalSubstring");
+    //contains substring of just units and stuff after kg
+
+    if (highDosage == lowDosage) {
+      double dosage = weight * highDosage;
+
+      //rounding to 5 for now
+      return ["${dosage.toStringAsFixed(5)} $finalSubstring", finalSubstring];
+    } else {
+      double low = (weight * lowDosage);
+      double high = weight * highDosage;
+
+      return ["$low - $high $finalSubstring", finalSubstring];
+    }
+    // debugPrint(testString);
+    // debugPrint(weight)
+  }
+
+  String getConcentration(String dosage, var concentration) {
+    if (concentration == null) {
+      return "";
+    } else {
+      return "";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var animal = appState.curAnimal;
     var drugname = appState.curDrug;
+    var weight = appState.curWeight;
 
     return Scaffold(
       appBar: AppBar(
@@ -44,12 +80,52 @@ class DosagePage extends StatelessWidget {
                 mainDrug = drug;
               }
             }
-            debugPrint("Snapshot 4: $mainDrug");
 
+            //soage funciton that returns dosage in [0] and units in [1]
+            var dosageList = getDosage(
+                weight.toDouble(),
+                mainDrug['Dosage_high'].toDouble(),
+                mainDrug['Dosage_low'].toDouble(),
+                mainDrug['Units']);
+
+            //dosage
+            var dosageDisplay = dosageList[0];
+            debugPrint("dosageDisplay: $dosageDisplay");
+            debugPrint("concentration: ${mainDrug['Concentration']}");
+
+            //concentration
+            var concentration =
+                getConcentration(dosageList[1], mainDrug['Concentration']);
+
+            String concentrationDisplay;
+
+            if (concentration == "") {
+              concentrationDisplay = "N/A";
+            } else {
+              concentrationDisplay = concentration;
+            }
+
+            //notes
+            String notesDisplay;
+
+            if (mainDrug['Notes'] == "") {
+              notesDisplay = "N/A";
+            } else {
+              notesDisplay = mainDrug['Notes'];
+            }
+
+            //have a bunch of text here
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [],
+                children: [
+                  Text("Animal: $animal"),
+                  Text("Drug: $drugname"),
+                  Text("Weight: $weight kg"),
+                  Text("Dosage: $dosageDisplay"),
+                  Text("Concentration: $concentrationDisplay "),
+                  Text("Notes: $notesDisplay "),
+                ],
               ),
             );
           } else if (snapshot.hasError) {
