@@ -84,6 +84,9 @@ class DrugPage extends StatelessWidget {
           if (snapshot.hasData) {
             // data has been loaded, build the widget tree
             var data = snapshot.data as List<dynamic>;
+            data.sort((a, b) {
+              return a['Name'].toLowerCase().compareTo(b['Name'].toLowerCase());
+            });
 
             //debugPrint("Snapshot 2: $data");
             List<ElevatedButton> drugList = [];
