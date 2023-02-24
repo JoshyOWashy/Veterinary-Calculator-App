@@ -80,6 +80,7 @@ class WeightFormState extends State<WeightForm> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           appState.chooseWeight(textController.text);
+                          appState.changeWeightUnits(_selectedUnit);
                           debugPrint(
                               "Weight ${textController.text} in WeightPage");
                           debugPrint("Animal $animal in WeightPage");

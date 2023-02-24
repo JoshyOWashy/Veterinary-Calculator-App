@@ -11,16 +11,18 @@ class DosagePage extends StatelessWidget {
         FirebaseDatabase.instance.ref("Species/$animal/Drugs");
 
     DatabaseEvent event = await ref.once();
-    //debugPrint("Snapshot type: ${event.type}");
-    //debugPrint("Snapshot: ${event.snapshot.value}");
 
     //shows the data here
-
     return event.snapshot.value;
   }
 
-  List getDosage(
-      double weight, double highDosage, double lowDosage, String units) {
+  List getDosage(double weight, double highDosage, double lowDosage,
+      String units, bool isLbs) {
+    // convert to kg if lbs
+    if (isLbs) {
+      weight = weight * 0.453592;
+    }
+
     //if theres only one dosage
     int kgIdx = units.indexOf("kg");
     String beginningSubstring = units.substring(0, kgIdx - 1);
@@ -29,8 +31,8 @@ class DosagePage extends StatelessWidget {
     String finalSubstring = beginningSubstring + endSubstring;
 
     debugPrint("finalSubstring: $finalSubstring");
-    //contains substring of just units and stuff after kg
 
+    //contains substring of just units and stuff after kg
     if (highDosage == lowDosage) {
       double dosage = weight * highDosage;
 
@@ -42,8 +44,6 @@ class DosagePage extends StatelessWidget {
 
       return ["$low - $high $finalSubstring", finalSubstring];
     }
-    // debugPrint(testString);
-    // debugPrint(weight)
   }
 
   String getConcentration(String dosage, var concentration) {
@@ -60,6 +60,7 @@ class DosagePage extends StatelessWidget {
     var animal = appState.curAnimal;
     var drugname = appState.curDrug;
     var weight = appState.curWeight;
+    var weightunit = appState.curWeightUnits;
 
     return Scaffold(
       appBar: AppBar(
@@ -72,28 +73,32 @@ class DosagePage extends StatelessWidget {
             // data has been loaded, build the widget tree
             var data = snapshot.data as List<dynamic>;
 
-            //debugPrint("Snapshot 2: $data");
             var mainDrug;
             for (var drug in data) {
-              // debugPrint("Snapshot 3: $drug");
               if (drug['Name'] == drugname) {
                 mainDrug = drug;
               }
             }
 
-            //soage funciton that returns dosage in [0] and units in [1]
+            var isLbs = false;
+            if (weightunit == "lbs") {
+              isLbs = true;
+            }
+
+            // returns dosage in [0] and units in [1]
             var dosageList = getDosage(
                 weight.toDouble(),
                 mainDrug['Dosage_high'].toDouble(),
                 mainDrug['Dosage_low'].toDouble(),
-                mainDrug['Units']);
+                mainDrug['Units'],
+                isLbs);
 
-            //dosage
+            // dosage
             var dosageDisplay = dosageList[0];
             debugPrint("dosageDisplay: $dosageDisplay");
             debugPrint("concentration: ${mainDrug['Concentration']}");
 
-            //concentration
+            // concentration
             var concentration =
                 getConcentration(dosageList[1], mainDrug['Concentration']);
 
@@ -105,7 +110,7 @@ class DosagePage extends StatelessWidget {
               concentrationDisplay = concentration;
             }
 
-            //notes
+            // notes
             String notesDisplay;
 
             if (mainDrug['Notes'] == "") {
@@ -114,14 +119,14 @@ class DosagePage extends StatelessWidget {
               notesDisplay = mainDrug['Notes'];
             }
 
-            //have a bunch of text here
+            // have a bunch of text here
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Animal: $animal"),
                   Text("Drug: $drugname"),
-                  Text("Weight: $weight kg"),
+                  Text("Weight: $weight $weightunit"),
                   Text("Dosage: $dosageDisplay"),
                   Text("Concentration: $concentrationDisplay "),
                   Text("Notes: $notesDisplay "),
