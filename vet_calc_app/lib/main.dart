@@ -43,6 +43,7 @@ class MyAppState extends ChangeNotifier {
   var curAnimal = "";
   var curDrug = "";
   var curWeight = 0.0;
+  var curWeightUnits = "kg";
 
   void chooseAnimal(Animal animal) {
     curAnimal = animalToString(animal);
@@ -56,6 +57,11 @@ class MyAppState extends ChangeNotifier {
 
   void chooseWeight(String weight) {
     curWeight = double.parse(weight);
+    notifyListeners();
+  }
+
+  void changeWeightUnits(String units) {
+    curWeightUnits = "lbs";
     notifyListeners();
   }
 }
