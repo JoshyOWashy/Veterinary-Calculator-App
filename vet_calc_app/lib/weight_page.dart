@@ -17,6 +17,7 @@ class WeightForm extends StatefulWidget {
 // TODO: show error when input is empty
 class WeightFormState extends State<WeightForm> {
   final _formKey = GlobalKey<FormState>();
+  String _selectedUnit = 'kg';
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class WeightFormState extends State<WeightForm> {
                     ],
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
-                      hintText: 'Enter Weight for $animal in kg',
+                      hintText: 'Enter Weight for $animal',
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -57,6 +58,21 @@ class WeightFormState extends State<WeightForm> {
                       return null;
                     },
                   ),
+                ),
+                DropdownButton<String>(
+                  value: _selectedUnit,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedUnit = newValue!;
+                    });
+                  },
+                  items: <String>['kg', 'lbs']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -69,7 +85,7 @@ class WeightFormState extends State<WeightForm> {
                           debugPrint("Animal $animal in WeightPage");
                           debugPrint("Drug $drug in WeightPage");
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('yay')),
+                            const SnackBar(content: Text('hooray')),
                           );
                           Navigator.push(
                             context,
