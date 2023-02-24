@@ -73,6 +73,7 @@ class DrugPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var animal = appState.curAnimal;
+    final ScrollController scrollController = ScrollController();
 
     return Scaffold(
       appBar: AppBar(
@@ -105,10 +106,15 @@ class DrugPage extends StatelessWidget {
             }
 
             return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: drugList,
-              ),
+              child: Scrollbar(
+                  controller: scrollController,
+                  thumbVisibility: true,
+                  child: SingleChildScrollView(
+                      controller: scrollController,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: drugList,
+                      ))),
             );
           } else if (snapshot.hasError) {
             // an error occurred while loading the data

@@ -43,6 +43,7 @@ class MyAppState extends ChangeNotifier {
   var curAnimal = "";
   var curDrug = "";
   var curWeight = 0.0;
+  var curWeightUnits = "kg";
 
   void chooseAnimal(Animal animal) {
     curAnimal = animalToString(animal);
@@ -56,6 +57,11 @@ class MyAppState extends ChangeNotifier {
 
   void chooseWeight(String weight) {
     curWeight = double.parse(weight);
+    notifyListeners();
+  }
+
+  void changeWeightUnits(String units) {
+    curWeightUnits = "lbs";
     notifyListeners();
   }
 }
@@ -76,7 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
       return Scaffold(
         body: SafeArea(
           child: Center(
-              // TODO: need scrollbar on other screens
               child: Scrollbar(
                   controller: scrollController,
                   thumbVisibility: true,
@@ -90,47 +95,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
     });
-
-    /*
-      OLD LAYOUT BUILDER IN CASE WE WANT TO SWITCH TO IS
-
-    */
-    // return LayoutBuilder(builder: (context, constraints) {
-    //   return Scaffold(
-    //     body: Row(
-    //       children: [
-    //         // SafeArea(
-    //         //   child: NavigationRail(
-    //         //     extended: constraints.maxWidth >= 600,
-    //         //     destinations: const [
-    //         //       NavigationRailDestination(
-    //         //         icon: Icon(Icons.home),
-    //         //         label: Text('Home'),
-    //         //       ),
-    //         //       NavigationRailDestination(
-    //         //         icon: Icon(Icons.settings),
-    //         //         label: Text('Settings'),
-    //         //       ),
-    //         //     ],
-    //         //     selectedIndex: selectedIndex,
-    //         //     onDestinationSelected: (value) {
-    //         //       setState(() {
-    //         //         selectedIndex = value;
-    //         //       });
-    //         //     },
-    //         //   ),
-    //         // ),
-    //         Expanded(
-    //             child: SingleChildScrollView(
-    //           child: Container(
-    //             color: Theme.of(context).colorScheme.primaryContainer,
-    //             child: const AnimalPage(),
-    //             // child: const page,
-    //           ),
-    //         )),
-    //       ],
-    //     ),
-    //   );
-    // });
   }
 }
