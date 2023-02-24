@@ -119,6 +119,12 @@ class DosagePage extends StatelessWidget {
               notesDisplay = mainDrug['Notes'];
             }
 
+            var weightText = Text("Weight: $weight $weightunit");
+            if (isLbs) {
+              weightText =
+                  Text("Weight: $weight $weightunit (${weight * 0.453592} kg)");
+            }
+
             // have a bunch of text here
             return Center(
               child: Column(
@@ -126,7 +132,7 @@ class DosagePage extends StatelessWidget {
                 children: [
                   Text("Animal: $animal"),
                   Text("Drug: $drugname"),
-                  Text("Weight: $weight $weightunit"),
+                  weightText,
                   Text("Dosage: $dosageDisplay"),
                   Text("Concentration: $concentrationDisplay "),
                   Text("Notes: $notesDisplay "),
