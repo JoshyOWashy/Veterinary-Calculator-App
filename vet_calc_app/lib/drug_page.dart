@@ -11,8 +11,6 @@ class DrugPage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    // debugPrint(appState.curAnimal);
-
     var animal = appState.curAnimal;
 
     return Scaffold(
@@ -61,8 +59,6 @@ class DrugPage extends StatelessWidget {
         FirebaseDatabase.instance.ref("Species/$animal/Drugs");
 
     DatabaseEvent event = await ref.once();
-    //debugPrint("Snapshot type: ${event.type}");
-    //debugPrint("Snapshot: ${event.snapshot.value}");
 
     //shows the data here
 
@@ -89,7 +85,6 @@ class DrugPage extends StatelessWidget {
               return a['Name'].toLowerCase().compareTo(b['Name'].toLowerCase());
             });
 
-            //debugPrint("Snapshot 2: $data");
             List<ElevatedButton> drugList = [];
             for (var drug in data) {
               var newItem = ElevatedButton(
