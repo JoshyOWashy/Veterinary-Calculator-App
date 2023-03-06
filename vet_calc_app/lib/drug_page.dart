@@ -4,43 +4,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'main.dart';
 import 'weight_page.dart';
 
-// TODO: Drug Page
-class DrugPage1 extends StatelessWidget {
-  const DrugPage1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-    var animal = appState.curAnimal;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Drugs for $animal'),
-      ),
-      body: Center(
-        //have this be buttons of drugs
-
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
-        ),
-      ),
-    );
-    // return ListView(
-    //   children: const [
-    //     Padding(
-    //       padding: EdgeInsets.all(20),
-    //       child: Text('Drugs'),
-    //     )
-    //   ],
-    // );
-  }
-}
-
-//Temp Drug Page
-//TODO: query database to get drugs for specific animal
 class DrugPage extends StatelessWidget {
   const DrugPage({super.key});
 
@@ -51,7 +14,6 @@ class DrugPage extends StatelessWidget {
     DatabaseEvent event = await ref.once();
 
     //shows the data here
-
     return event.snapshot.value;
   }
 
@@ -59,6 +21,7 @@ class DrugPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var animal = appState.curAnimal;
+    final ScrollController scrollController = ScrollController();
 
     return Scaffold(
       appBar: AppBar(
@@ -87,19 +50,39 @@ class DrugPage extends StatelessWidget {
             appState.chooseDrug(dropdownItems.first.value.toString());
 
             return Center(
-              child: DropdownButton(
-                value: appState.curDrug,
-                onChanged: (String? newValue) {
-                  if (newValue == null) return;
+                child: Scrollbar(
+              controller: scrollController,
+              thumbVisibility: true,
+              child: SingleChildScrollView(
+                controller: scrollController,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    DropdownButton(
+                      value: appState.curDrug,
+                      onChanged: (String? newValue) {
+                        if (newValue == null) return;
 
-                  appState.chooseDrug(newValue);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const WeightForm()),
-                  );
-                },
-                items: dropdownItems,
+                        appState.chooseDrug(newValue);
+                        debugPrint(appState.curDrug);
+                      },
+                      items: dropdownItems,
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const WeightForm()),
+                        );
+                      },
+                      child: const Text('Go to Weight Page'),
+                    ),
+                  ],
+                ),
               ),
+            )
             );
           } else if (snapshot.hasError) {
             // an error occurred while loading the data
