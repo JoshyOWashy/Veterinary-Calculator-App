@@ -85,19 +85,32 @@ class DrugListPageState extends State<DrugPage> {
                         ),
                         const SizedBox(height: 15),
                         // Drug dropdown list
-                        DropdownButton(
-                          value: appState.curDrug,
-                          onChanged: (String? newValue) {
-                            if (newValue == null ||
-                                newValue == appState.curDrug) {
-                              return;
-                            }
+                        SizedBox(
+                          width: 250,
+                          child: DropdownButtonFormField(
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.grey,
+                                ),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                            ),
+                            value: appState.curDrug,
+                            onChanged: (String? newValue) {
+                              if (newValue == null ||
+                                  newValue == appState.curDrug) {
+                                return;
+                              }
 
-                            setState(() {
-                              appState.chooseDrug(newValue);
-                            });
-                          },
-                          items: dropdownItems,
+                              setState(() {
+                                appState.chooseDrug(newValue);
+                              });
+                            },
+                            items: dropdownItems,
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
@@ -137,28 +150,42 @@ class DrugListPageState extends State<DrugPage> {
                                       ),
                                     ),
                                     // Weight units dropdown list
-                                    DropdownButton<String>(
-                                      value: appState.curWeightUnits,
-                                      onChanged: (String? newValue) {
-                                        if (newValue == null ||
-                                            newValue ==
-                                                appState.curWeightUnits) {
-                                          return;
-                                        }
+                                    SizedBox(
+                                      width: 70,
+                                      child: DropdownButtonFormField(
+                                        decoration: const InputDecoration(
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.grey,
+                                            ),
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(5.0),
+                                            ),
+                                          ),
+                                        ),
+                                        value: appState.curWeightUnits,
+                                        onChanged: (String? newValue) {
+                                          if (newValue == null ||
+                                              newValue ==
+                                                  appState.curWeightUnits) {
+                                            return;
+                                          }
 
-                                        setState(() {
-                                          appState.changeWeightUnits(newValue);
-                                        });
-                                      },
-                                      items: <String>['kg', 'lbs']
-                                          .map<DropdownMenuItem<String>>(
-                                              (String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
-                                          child: Text(value),
-                                        );
-                                      }).toList(),
-                                    ),
+                                          setState(() {
+                                            appState
+                                                .changeWeightUnits(newValue);
+                                          });
+                                        },
+                                        items: <String>['kg', 'lbs']
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    )
                                   ],
                                 ),
                                 const SizedBox(height: 100),
