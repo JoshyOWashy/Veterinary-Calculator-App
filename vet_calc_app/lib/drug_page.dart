@@ -52,7 +52,9 @@ class DrugListPageState extends State<DrugPage> {
               );
             }
 
-            appState.chooseDrug(dropdownItems.first.value.toString());
+            if (appState.curDrug.isEmpty) {
+              appState.chooseDrug(dropdownItems.first.value.toString());
+            }
 
             return Center(
               child: SingleChildScrollView(
@@ -65,10 +67,9 @@ class DrugListPageState extends State<DrugPage> {
                       onChanged: (String? newValue) {
                         if (newValue == null) return;
 
-                        appState.chooseDrug(newValue);
-
-                        // TODO: currDrug doesn't update
-                        debugPrint(appState.curDrug);
+                        setState(() {
+                          appState.chooseDrug(newValue);
+                        });
                       },
                       items: dropdownItems,
                     ),
