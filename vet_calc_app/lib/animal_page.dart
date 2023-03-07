@@ -10,6 +10,8 @@ class AnimalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: make buttons dynamically generated
+    // TODO: add icons to buttons
     var appState = context.watch<MyAppState>();
 
     return Center(
@@ -28,6 +30,15 @@ class AnimalPage extends StatelessWidget {
               width: 150,
               height: 150,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  side: const BorderSide(
+                    color: Colors.grey,
+                    width: 2,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                ),
                 onPressed: () {
                   appState.chooseAnimal(Animal.equine);
                   Navigator.push(
@@ -35,7 +46,8 @@ class AnimalPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const DrugPage()),
                   );
                 },
-                child: Text(animalToString(Animal.equine)),
+                child: Text(animalToString(Animal.equine),
+                    style: const TextStyle(fontSize: 20)),
               ),
             ),
 
@@ -46,6 +58,15 @@ class AnimalPage extends StatelessWidget {
               width: 150,
               height: 150,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  side: const BorderSide(
+                    color: Colors.grey,
+                    width: 2,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                ),
                 onPressed: () {
                   appState.chooseAnimal(Animal.sheepGoat);
                   Navigator.push(
@@ -53,7 +74,8 @@ class AnimalPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const DrugPage()),
                   );
                 },
-                child: Text(animalToString(Animal.sheepGoat)),
+                child: Text(animalToString(Animal.sheepGoat),
+                    style: const TextStyle(fontSize: 20)),
               ),
             )
           ]),
@@ -66,6 +88,15 @@ class AnimalPage extends StatelessWidget {
                 width: 150,
                 height: 150,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                   onPressed: () {
                     appState.chooseAnimal(Animal.camelid);
                     Navigator.push(
@@ -73,7 +104,8 @@ class AnimalPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const DrugPage()),
                     );
                   },
-                  child: Text(animalToString(Animal.camelid)),
+                  child: Text(animalToString(Animal.camelid),
+                      style: const TextStyle(fontSize: 20)),
                 ),
               ),
 
@@ -84,6 +116,15 @@ class AnimalPage extends StatelessWidget {
                 width: 150,
                 height: 150,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                   onPressed: () {
                     appState.chooseAnimal(Animal.swine);
                     Navigator.push(
@@ -91,7 +132,8 @@ class AnimalPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const DrugPage()),
                     );
                   },
-                  child: Text(animalToString(Animal.swine)),
+                  child: Text(animalToString(Animal.swine),
+                      style: const TextStyle(fontSize: 20)),
                 ),
               )
             ],
@@ -105,6 +147,15 @@ class AnimalPage extends StatelessWidget {
                 width: 150,
                 height: 150,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                   onPressed: () {
                     appState.chooseAnimal(Animal.cattle);
                     Navigator.push(
@@ -112,7 +163,8 @@ class AnimalPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const DrugPage()),
                     );
                   },
-                  child: Text(animalToString(Animal.cattle)),
+                  child: Text(animalToString(Animal.cattle),
+                      style: const TextStyle(fontSize: 20)),
                 ),
               ),
 
@@ -123,6 +175,15 @@ class AnimalPage extends StatelessWidget {
                 width: 150,
                 height: 150,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                   onPressed: () {
                     appState.chooseAnimal(Animal.dog);
                     Navigator.push(
@@ -130,7 +191,8 @@ class AnimalPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const DrugPage()),
                     );
                   },
-                  child: Text(animalToString(Animal.dog)),
+                  child: Text(animalToString(Animal.dog),
+                      style: const TextStyle(fontSize: 20)),
                 ),
               )
             ],
@@ -144,6 +206,15 @@ class AnimalPage extends StatelessWidget {
                 width: 150,
                 height: 150,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                   onPressed: () {
                     appState.chooseAnimal(Animal.cat);
                     Navigator.push(
@@ -151,7 +222,8 @@ class AnimalPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const DrugPage()),
                     );
                   },
-                  child: Text(animalToString(Animal.cat)),
+                  child: Text(animalToString(Animal.cat),
+                      style: const TextStyle(fontSize: 20)),
                 ),
               ),
             ],

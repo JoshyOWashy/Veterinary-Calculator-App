@@ -122,10 +122,12 @@ class DosagePage extends StatelessWidget {
               notesDisplay = mainDrug['Notes'];
             }
 
-            var weightText = Text("Weight: $weight $weightunit");
+            var weightText = Text("Weight: $weight $weightunit",
+                style: const TextStyle(fontSize: 20));
             if (isLbs) {
-              weightText =
-                  Text("Weight: $weight $weightunit (${weight * 0.453592} kg)");
+              weightText = Text(
+                  "Weight: $weight $weightunit (${weight * 0.453592} kg)",
+                  style: const TextStyle(fontSize: 20));
             }
 
             // have a bunch of text here
@@ -133,12 +135,17 @@ class DosagePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Animal: $animal"),
-                  Text("Drug: $drugname"),
+                  Text("Animal: $animal", style: const TextStyle(fontSize: 20)),
+                  Text("Drug: $drugname", style: const TextStyle(fontSize: 20)),
                   weightText,
-                  Text("Dosage: $dosageDisplay"),
-                  Text("Concentration: $concentrationDisplay "),
-                  Text("Notes: $notesDisplay "),
+                  const SizedBox(height: 50),
+                  Text("Dosage: $dosageDisplay",
+                      style: const TextStyle(fontSize: 20)),
+                  Text("Concentration: $concentrationDisplay ",
+                      style: const TextStyle(fontSize: 20)),
+                  const SizedBox(height: 50),
+                  Text("Notes: $notesDisplay ",
+                      style: const TextStyle(fontSize: 20)),
                 ],
               ),
             );

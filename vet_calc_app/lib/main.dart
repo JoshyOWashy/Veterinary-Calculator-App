@@ -80,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         body: SafeArea(
           child: Center(
               child: Scrollbar(
@@ -88,7 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: SingleChildScrollView(
                     controller: scrollController,
                     child: Container(
-                      color: Theme.of(context).colorScheme.primaryContainer,
                       child: const AnimalPage(),
                     ),
                   ))),
