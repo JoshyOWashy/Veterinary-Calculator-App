@@ -5,13 +5,11 @@ import 'main.dart';
 import 'weight_page.dart';
 
 class DrugPage extends StatefulWidget {
-  const DrugPage({Key? key}) : super(key: key);
-
   @override
-  _DrugListPageState createState() => _DrugListPageState();
+  DrugListPageState createState() => DrugListPageState();
 }
 
-class _DrugListPageState extends State<DrugPage> {
+class DrugListPageState extends State<DrugPage> {
   Future<Object?> databaseQuery(animal) async {
     DatabaseReference ref =
         FirebaseDatabase.instance.ref("Species/$animal/Drugs");
