@@ -90,75 +90,105 @@ class DrugListPageState extends State<DrugPage> {
                       },
                       items: dropdownItems,
                     ),
-                    // Weight entry form
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 50.0,
-                        vertical: 25.0,
-                      ),
-                      child: TextFormField(
-                        controller: textController,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.allow(
-                            RegExp(r'(^\d*\.?\d*)'),
-                          ),
-                        ],
-                        decoration: InputDecoration(
-                          border: const OutlineInputBorder(),
-                          hintText: 'Enter Weight for $animal',
+                          horizontal: 50.0, vertical: 25.0),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              children: [
+                                // Weight text field
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 20.0),
+                                    child: TextFormField(
+                                      controller: textController,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.allow(
+                                          RegExp(r'(^\d*\.?\d*)'),
+                                        ),
+                                      ],
+                                      decoration: InputDecoration(
+                                        border: const OutlineInputBorder(),
+                                        hintText: 'Enter Weight for $animal',
+                                      ),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return 'Please enter a weight';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                // Weight units dropdown list
+                                DropdownButton<String>(
+                                  value: appState.curWeightUnits,
+                                  onChanged: (String? newValue) {
+                                    if (newValue == null ||
+                                        newValue == appState.curWeightUnits) {
+                                      return;
+                                    }
+
+                                    setState(() {
+                                      appState.changeWeightUnits(newValue);
+                                    });
+                                  },
+                                  items: <String>['kg', 'lbs']
+                                      .map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 100),
+                            // Calculate button
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(300, 100),
+                                side: const BorderSide(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                              ),
+                              onPressed: () {
+                                if (_formKey.currentState == null) return;
+
+                                if (_formKey.currentState!.validate()) {
+                                  appState.chooseWeight(textController.text);
+                                  appState.changeWeightUnits(
+                                      appState.curWeightUnits);
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text('woooo!')),
+                                  );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DosagePage()),
+                                  );
+                                }
+                              },
+                              child: const Text(
+                                'Calculate',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter a weight';
-                          }
-                          return null;
-                        },
                       ),
                     ),
-                    // Weight units selector
-                    DropdownButton<String>(
-                      value: appState.curWeightUnits,
-                      onChanged: (String? newValue) {
-                        if (newValue == null ||
-                            newValue == appState.curWeightUnits) return;
-
-                        setState(() {
-                          appState.changeWeightUnits(newValue);
-                        });
-                      },
-                      items: <String>['kg', 'lbs']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                    ),
-                    // Calculate button
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: ElevatedButton(
-                          onPressed: () {
-                            if (_formKey.currentState == null) return;
-
-                            if (_formKey.currentState!.validate()) {
-                              appState.chooseWeight(textController.text);
-                              appState
-                                  .changeWeightUnits(appState.curWeightUnits);
-
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('woooo!')),
-                              );
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const DosagePage()),
-                              );
-                            }
-                          },
-                          child: const Text("Calculate")),
-                    )
                   ],
                 ),
               ),
