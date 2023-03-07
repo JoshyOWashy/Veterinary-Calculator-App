@@ -35,7 +35,7 @@ class DrugListPageState extends State<DrugPage> {
 
     return WillPopScope(
         onWillPop: () async {
-          // Reset the curDrug value when the user goes back to the home menu
+          // Reset the curDrug value when the user goes back to the animal page
           appState.curDrug = '';
           return true;
         },
@@ -55,6 +55,7 @@ class DrugListPageState extends State<DrugPage> {
                       .compareTo(b['Name'].toLowerCase());
                 });
 
+                // load dropdown box from database
                 List<DropdownMenuItem<String>> dropdownItems = [];
                 for (var drug in data) {
                   dropdownItems.add(
@@ -65,6 +66,7 @@ class DrugListPageState extends State<DrugPage> {
                   );
                 }
 
+                // default dropdown value
                 if (appState.curDrug.isEmpty && dropdownItems.isNotEmpty) {
                   appState.chooseDrug(dropdownItems.first.value.toString());
                 }
@@ -83,7 +85,9 @@ class DrugListPageState extends State<DrugPage> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+
                         const SizedBox(height: 15),
+
                         // Drug dropdown list
                         SizedBox(
                           width: 250,
@@ -105,6 +109,7 @@ class DrugListPageState extends State<DrugPage> {
                                 return;
                               }
 
+                              // update current drug
                               setState(() {
                                 appState.chooseDrug(newValue);
                               });
@@ -112,6 +117,7 @@ class DrugListPageState extends State<DrugPage> {
                             items: dropdownItems,
                           ),
                         ),
+
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 35.0, vertical: 25.0),
@@ -154,6 +160,7 @@ class DrugListPageState extends State<DrugPage> {
                                         ),
                                       ),
                                     ),
+
                                     // Weight units dropdown list
                                     SizedBox(
                                       width: 70,
@@ -178,6 +185,7 @@ class DrugListPageState extends State<DrugPage> {
                                           }
 
                                           setState(() {
+                                            // update weight units
                                             appState
                                                 .changeWeightUnits(newValue);
                                           });
@@ -194,7 +202,7 @@ class DrugListPageState extends State<DrugPage> {
                                     )
                                   ],
                                 ),
-                                const SizedBox(height: 100),
+
                                 // Calculate button
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
@@ -215,8 +223,11 @@ class DrugListPageState extends State<DrugPage> {
 
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
-                                        const SnackBar(content: Text('woooo!')),
+                                        const SnackBar(
+                                            content:
+                                                Text('Calculation completed')),
                                       );
+
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
