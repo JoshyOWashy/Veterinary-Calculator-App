@@ -61,7 +61,7 @@ class MyAppState extends ChangeNotifier {
   }
 
   void changeWeightUnits(String units) {
-    curWeightUnits = "lbs";
+    curWeightUnits = units;
     notifyListeners();
   }
 }
