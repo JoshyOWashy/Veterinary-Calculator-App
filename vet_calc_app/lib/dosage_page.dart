@@ -37,12 +37,15 @@ class DosagePage extends StatelessWidget {
       double dosage = weight * highDosage;
 
       //rounding to 5 for now
-      return ["${dosage.toStringAsFixed(5)} $finalSubstring", finalSubstring];
+      return ["${dosage.toStringAsFixed(3)} $finalSubstring", finalSubstring];
     } else {
       double low = (weight * lowDosage);
       double high = weight * highDosage;
 
-      return ["$low - $high $finalSubstring", finalSubstring];
+      return [
+        "${low.toStringAsFixed(3)} - ${high.toStringAsFixed(3)} $finalSubstring",
+        finalSubstring
+      ];
     }
   }
 
