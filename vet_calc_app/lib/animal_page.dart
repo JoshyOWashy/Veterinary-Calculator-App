@@ -10,6 +10,8 @@ class AnimalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: make buttons dynamically generated
+    // TODO: add icons to buttons
     var appState = context.watch<MyAppState>();
 
     return Center(
@@ -28,6 +30,15 @@ class AnimalPage extends StatelessWidget {
               width: 150,
               height: 150,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  side: const BorderSide(
+                    color: Colors.grey,
+                    width: 2,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                ),
                 onPressed: () {
                   appState.chooseAnimal(Animal.equine);
                   Navigator.push(
@@ -47,6 +58,15 @@ class AnimalPage extends StatelessWidget {
               width: 150,
               height: 150,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  side: const BorderSide(
+                    color: Colors.grey,
+                    width: 2,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                ),
                 onPressed: () {
                   appState.chooseAnimal(Animal.sheepGoat);
                   Navigator.push(
@@ -68,6 +88,15 @@ class AnimalPage extends StatelessWidget {
                 width: 150,
                 height: 150,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                   onPressed: () {
                     appState.chooseAnimal(Animal.camelid);
                     Navigator.push(
@@ -87,6 +116,15 @@ class AnimalPage extends StatelessWidget {
                 width: 150,
                 height: 150,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                   onPressed: () {
                     appState.chooseAnimal(Animal.swine);
                     Navigator.push(
@@ -109,6 +147,15 @@ class AnimalPage extends StatelessWidget {
                 width: 150,
                 height: 150,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                   onPressed: () {
                     appState.chooseAnimal(Animal.cattle);
                     Navigator.push(
@@ -128,6 +175,15 @@ class AnimalPage extends StatelessWidget {
                 width: 150,
                 height: 150,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                   onPressed: () {
                     appState.chooseAnimal(Animal.dog);
                     Navigator.push(
@@ -150,6 +206,15 @@ class AnimalPage extends StatelessWidget {
                 width: 150,
                 height: 150,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: const BorderSide(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                  ),
                   onPressed: () {
                     appState.chooseAnimal(Animal.cat);
                     Navigator.push(
