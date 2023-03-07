@@ -4,9 +4,14 @@ import 'package:firebase_database/firebase_database.dart';
 import 'main.dart';
 import 'weight_page.dart';
 
-class DrugPage extends StatelessWidget {
-  const DrugPage({super.key});
+class DrugPage extends StatefulWidget {
+  const DrugPage({Key? key}) : super(key: key);
 
+  @override
+  _DrugListPageState createState() => _DrugListPageState();
+}
+
+class _DrugListPageState extends State<DrugPage> {
   Future<Object?> databaseQuery(animal) async {
     DatabaseReference ref =
         FirebaseDatabase.instance.ref("Species/$animal/Drugs");
@@ -50,9 +55,6 @@ class DrugPage extends StatelessWidget {
             appState.chooseDrug(dropdownItems.first.value.toString());
 
             return Center(
-                child: Scrollbar(
-              controller: scrollController,
-              thumbVisibility: true,
               child: SingleChildScrollView(
                 controller: scrollController,
                 child: Column(
@@ -64,6 +66,8 @@ class DrugPage extends StatelessWidget {
                         if (newValue == null) return;
 
                         appState.chooseDrug(newValue);
+
+                        // TODO: currDrug doesn't update
                         debugPrint(appState.curDrug);
                       },
                       items: dropdownItems,
@@ -82,7 +86,6 @@ class DrugPage extends StatelessWidget {
                   ],
                 ),
               ),
-            )
             );
           } else if (snapshot.hasError) {
             // an error occurred while loading the data
