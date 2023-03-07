@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'main.dart';
-import 'weight_page.dart';
+import 'package:flutter/services.dart';
+import 'dosage_page.dart';
 
 class DrugPage extends StatefulWidget {
   const DrugPage({Key? key}) : super(key: key);
@@ -12,6 +13,8 @@ class DrugPage extends StatefulWidget {
 }
 
 class DrugListPageState extends State<DrugPage> {
+  final _formKey = GlobalKey<FormState>();
+
   Future<Object?> databaseQuery(animal) async {
     DatabaseReference ref =
         FirebaseDatabase.instance.ref("Species/$animal/Drugs");
@@ -26,11 +29,13 @@ class DrugListPageState extends State<DrugPage> {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var animal = appState.curAnimal;
+
+    final textController = TextEditingController();
     final ScrollController scrollController = ScrollController();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Drugs for $animal'),
+        title: Text('$animal Drug Calculation'),
       ),
       body: FutureBuilder(
         future: databaseQuery(animal),
@@ -52,7 +57,7 @@ class DrugListPageState extends State<DrugPage> {
               );
             }
 
-            if (appState.curDrug.isEmpty) {
+            if (appState.curDrug.isEmpty && dropdownItems.isNotEmpty) {
               appState.chooseDrug(dropdownItems.first.value.toString());
             }
 
@@ -62,10 +67,22 @@ class DrugListPageState extends State<DrugPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    // Text for drug selection
+                    const Text(
+                      'Select a drug:',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    // Drug dropdown list
                     DropdownButton(
                       value: appState.curDrug,
                       onChanged: (String? newValue) {
-                        if (newValue == null) return;
+                        if (newValue == null || newValue == appState.curDrug) {
+                          return;
+                        }
 
                         setState(() {
                           appState.chooseDrug(newValue);
@@ -73,17 +90,75 @@ class DrugListPageState extends State<DrugPage> {
                       },
                       items: dropdownItems,
                     ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const WeightForm()),
-                        );
-                      },
-                      child: const Text('Go to Weight Page'),
+                    // Weight entry form
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 50.0,
+                        vertical: 25.0,
+                      ),
+                      child: TextFormField(
+                        controller: textController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(
+                            RegExp(r'(^\d*\.?\d*)'),
+                          ),
+                        ],
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          hintText: 'Enter Weight for $animal',
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a weight';
+                          }
+                          return null;
+                        },
+                      ),
                     ),
+                    // Weight units selector
+                    DropdownButton<String>(
+                      value: appState.curWeightUnits,
+                      onChanged: (String? newValue) {
+                        if (newValue == null ||
+                            newValue == appState.curWeightUnits) return;
+
+                        setState(() {
+                          appState.changeWeightUnits(newValue);
+                        });
+                      },
+                      items: <String>['kg', 'lbs']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                    // Calculate button
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState == null) return;
+
+                            if (_formKey.currentState!.validate()) {
+                              appState.chooseWeight(textController.text);
+                              appState
+                                  .changeWeightUnits(appState.curWeightUnits);
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('woooo!')),
+                              );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const DosagePage()),
+                              );
+                            }
+                          },
+                          child: const Text("Calculate")),
+                    )
                   ],
                 ),
               ),
