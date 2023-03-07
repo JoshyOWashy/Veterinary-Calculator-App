@@ -12,7 +12,6 @@ class AnimalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
-    // debugPrint(appState.curAnimal);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
