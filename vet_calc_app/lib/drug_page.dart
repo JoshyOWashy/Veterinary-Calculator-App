@@ -114,7 +114,7 @@ class DrugListPageState extends State<DrugPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 40.0, vertical: 25.0),
+                              horizontal: 35.0, vertical: 25.0),
                           child: Form(
                             key: _formKey,
                             child: Column(
@@ -126,32 +126,38 @@ class DrugListPageState extends State<DrugPage> {
                                       child: Padding(
                                         padding:
                                             const EdgeInsets.only(right: 20.0),
-                                        child: TextFormField(
-                                          controller: textController,
-                                          keyboardType: TextInputType.number,
-                                          inputFormatters: <TextInputFormatter>[
-                                            FilteringTextInputFormatter.allow(
-                                              RegExp(r'(^\d*\.?\d*)'),
+                                        child: SizedBox(
+                                          height: 100,
+                                          child: TextFormField(
+                                            controller: textController,
+                                            keyboardType: TextInputType.number,
+                                            inputFormatters: <
+                                                TextInputFormatter>[
+                                              FilteringTextInputFormatter.allow(
+                                                RegExp(r'(^\d*\.?\d*)'),
+                                              ),
+                                            ],
+                                            decoration: InputDecoration(
+                                              border:
+                                                  const OutlineInputBorder(),
+                                              hintText:
+                                                  'Enter Weight for $animal',
                                             ),
-                                          ],
-                                          decoration: InputDecoration(
-                                            border: const OutlineInputBorder(),
-                                            hintText:
-                                                'Enter Weight for $animal',
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Please enter a weight';
+                                              }
+                                              return null;
+                                            },
                                           ),
-                                          validator: (value) {
-                                            if (value == null ||
-                                                value.isEmpty) {
-                                              return 'Please enter a weight';
-                                            }
-                                            return null;
-                                          },
                                         ),
                                       ),
                                     ),
                                     // Weight units dropdown list
                                     SizedBox(
                                       width: 70,
+                                      height: 100,
                                       child: DropdownButtonFormField(
                                         decoration: const InputDecoration(
                                           border: OutlineInputBorder(
