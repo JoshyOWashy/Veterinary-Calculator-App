@@ -5,6 +5,8 @@ import 'main.dart';
 import 'weight_page.dart';
 
 class DrugPage extends StatefulWidget {
+  const DrugPage({super.key});
+
   @override
   DrugListPageState createState() => DrugListPageState();
 }
