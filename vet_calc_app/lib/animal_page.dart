@@ -35,7 +35,8 @@ class AnimalPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const DrugPage()),
                   );
                 },
-                child: Text(animalToString(Animal.equine)),
+                child: Text(animalToString(Animal.equine),
+                    style: const TextStyle(fontSize: 20)),
               ),
             ),
 
@@ -53,7 +54,8 @@ class AnimalPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const DrugPage()),
                   );
                 },
-                child: Text(animalToString(Animal.sheepGoat)),
+                child: Text(animalToString(Animal.sheepGoat),
+                    style: const TextStyle(fontSize: 20)),
               ),
             )
           ]),
@@ -73,7 +75,8 @@ class AnimalPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const DrugPage()),
                     );
                   },
-                  child: Text(animalToString(Animal.camelid)),
+                  child: Text(animalToString(Animal.camelid),
+                      style: const TextStyle(fontSize: 20)),
                 ),
               ),
 
@@ -91,7 +94,8 @@ class AnimalPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const DrugPage()),
                     );
                   },
-                  child: Text(animalToString(Animal.swine)),
+                  child: Text(animalToString(Animal.swine),
+                      style: const TextStyle(fontSize: 20)),
                 ),
               )
             ],
@@ -112,7 +116,8 @@ class AnimalPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const DrugPage()),
                     );
                   },
-                  child: Text(animalToString(Animal.cattle)),
+                  child: Text(animalToString(Animal.cattle),
+                      style: const TextStyle(fontSize: 20)),
                 ),
               ),
 
@@ -130,7 +135,8 @@ class AnimalPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const DrugPage()),
                     );
                   },
-                  child: Text(animalToString(Animal.dog)),
+                  child: Text(animalToString(Animal.dog),
+                      style: const TextStyle(fontSize: 20)),
                 ),
               )
             ],
@@ -151,7 +157,8 @@ class AnimalPage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const DrugPage()),
                     );
                   },
-                  child: Text(animalToString(Animal.cat)),
+                  child: Text(animalToString(Animal.cat),
+                      style: const TextStyle(fontSize: 20)),
                 ),
               ),
             ],

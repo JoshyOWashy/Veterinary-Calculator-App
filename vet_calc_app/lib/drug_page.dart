@@ -98,7 +98,7 @@ class DrugListPageState extends State<DrugPage> {
                                   color: Colors.grey,
                                 ),
                                 borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
+                                  Radius.circular(5.0),
                                 ),
                               ),
                             ),
@@ -164,42 +164,46 @@ class DrugListPageState extends State<DrugPage> {
                                     // Weight units dropdown list
                                     SizedBox(
                                       width: 70,
-                                      height: 100,
-                                      child: DropdownButtonFormField(
-                                        decoration: const InputDecoration(
-                                          border: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Colors.grey,
-                                            ),
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(5.0),
+                                      // bottom padding to align with text field
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 44.0),
+                                        child: DropdownButtonFormField(
+                                          decoration: const InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.grey,
+                                              ),
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(5.0),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        value: appState.curWeightUnits,
-                                        onChanged: (String? newValue) {
-                                          if (newValue == null ||
-                                              newValue ==
-                                                  appState.curWeightUnits) {
-                                            return;
-                                          }
+                                          value: appState.curWeightUnits,
+                                          onChanged: (String? newValue) {
+                                            if (newValue == null ||
+                                                newValue ==
+                                                    appState.curWeightUnits) {
+                                              return;
+                                            }
 
-                                          setState(() {
-                                            // update weight units
-                                            appState
-                                                .changeWeightUnits(newValue);
-                                          });
-                                        },
-                                        items: <String>['kg', 'lbs']
-                                            .map<DropdownMenuItem<String>>(
-                                                (String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
+                                            setState(() {
+                                              // update weight units
+                                              appState
+                                                  .changeWeightUnits(newValue);
+                                            });
+                                          },
+                                          items: <String>['kg', 'lbs']
+                                              .map<DropdownMenuItem<String>>(
+                                                  (String value) {
+                                            return DropdownMenuItem<String>(
+                                              value: value,
+                                              child: Text(value),
+                                            );
+                                          }).toList(),
+                                        ),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
 
@@ -210,6 +214,9 @@ class DrugListPageState extends State<DrugPage> {
                                     side: const BorderSide(
                                       color: Colors.grey,
                                       width: 2,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
                                   ),
                                   onPressed: () {
@@ -239,7 +246,7 @@ class DrugListPageState extends State<DrugPage> {
                                   child: const Text(
                                     'Calculate',
                                     style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
