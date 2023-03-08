@@ -162,6 +162,24 @@ class DosagePage extends StatelessWidget {
           }
         },
       ),
+      bottomNavigationBar: BottomAppBar(
+          color: Theme.of(context).colorScheme.primaryContainer,
+          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            SizedBox(
+              width: 75,
+              height: 75,
+              child: IconButton(
+                icon: const Icon(Icons.home),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyHomePage()),
+                  );
+                },
+                iconSize: 45,
+              ),
+            ),
+          ])),
     );
   }
 }
