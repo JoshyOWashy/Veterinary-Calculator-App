@@ -1,0 +1,58 @@
+{
+  "name": "",
+  "css_prefix_text": "",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "969e8aa3c487077fa80c989a45a8c5d2",
+      "css": "horse",
+      "code": 63216,
+      "src": "fontawesome5"
+    },
+    {
+      "uid": "55fb53bf8da91d88adbfc6544aa038f2",
+      "css": "sheep",
+      "code": 60052,
+      "src": "rpgawesome"
+    },
+    {
+      "uid": "4be166feeb95ae3a380f23f05758cfe3",
+      "css": "goat",
+      "code": 59392,
+      "src": "material"
+    },
+    {
+      "uid": "72e1273ce2ee4a36ddfec244597ff293",
+      "css": "piggy_bank",
+      "code": 62675,
+      "src": "fontawesome5"
+    },
+    {
+      "uid": "3a721dd880ded1ffe9f119c5a31745c2",
+      "css": "hat_cowboy",
+      "code": 63680,
+      "src": "fontawesome5"
+    },
+    {
+      "uid": "5887a7c7be93fdc58af7a951385eac89",
+      "css": "dog",
+      "code": 63187,
+      "src": "fontawesome5"
+    },
+    {
+      "uid": "4c7bbc0bcaaa7e01a76ed3c5e414928c",
+      "css": "cat",
+      "code": 59743,
+      "src": "rpgawesome"
+    },
+    {
+      "uid": "8815bdcacab2495dd436f029e78a15d7",
+      "css": "giraffe",
+      "code": 59419,
+      "src": "maki"
+    }
+  ]
+}
