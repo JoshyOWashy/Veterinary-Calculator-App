@@ -88,9 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   thumbVisibility: true,
                   child: SingleChildScrollView(
                     controller: scrollController,
-                    child: Container(
-                      child: const AnimalPage(),
-                    ),
+                    child: const AnimalPage(),
                   ))),
         ),
       );
