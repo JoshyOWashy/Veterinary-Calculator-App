@@ -231,12 +231,12 @@ class DrugListPageState extends State<DrugPage> {
                                       appState.changeWeightUnits(
                                           appState.curWeightUnits);
 
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                            content:
-                                                Text('Calculation completed')),
-                                      );
+                                      // ScaffoldMessenger.of(context)
+                                      //     .showSnackBar(
+                                      //   const SnackBar(
+                                      //       content:
+                                      //           Text('Calculation completed')),
+                                      // );
 
                                       Navigator.push(
                                         context,
