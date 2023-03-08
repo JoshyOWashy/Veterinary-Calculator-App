@@ -129,18 +129,16 @@ class DosagePage extends StatelessWidget {
                   "$concentrationString ${(lowDosage / newLowConcentration).toStringAsFixed(5)} - ${(lowDosage / newHighConcentration).toStringAsFixed(5)} to ${(highDosage / newLowConcentration).toStringAsFixed(5)} - ${(highDosage / newHighConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
             }
           } else {
-            if (concentrationUnits == "mg" && newDosageUnits == "µg") {
-              if (sameDosage) {
-                var newLowConcentration = object["low"];
-                var newHighConcentration = object["high"];
-                concentrationString =
-                    "$concentrationString ${(lowDosage / newLowConcentration).toStringAsFixed(5)} - ${(lowDosage / newHighConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
-              } else {
-                var newLowConcentration = object["low"];
-                var newHighConcentration = object["high"];
-                concentrationString =
-                    "$concentrationString ${(lowDosage / newLowConcentration).toStringAsFixed(5)} - ${(lowDosage / newHighConcentration).toStringAsFixed(5)} to ${(highDosage / newLowConcentration).toStringAsFixed(5)} - ${(newHighConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
-              }
+            if (sameDosage) {
+              var newLowConcentration = object["low"];
+              var newHighConcentration = object["high"];
+              concentrationString =
+                  "$concentrationString ${(lowDosage / newLowConcentration).toStringAsFixed(5)} - ${(lowDosage / newHighConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
+            } else {
+              var newLowConcentration = object["low"];
+              var newHighConcentration = object["high"];
+              concentrationString =
+                  "$concentrationString ${(lowDosage / newLowConcentration).toStringAsFixed(5)} - ${(lowDosage / newHighConcentration).toStringAsFixed(5)} to ${(highDosage / newLowConcentration).toStringAsFixed(5)} - ${(newHighConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
             }
           }
         }
