@@ -65,6 +65,8 @@ class DosagePage extends StatelessWidget {
     var weight = appState.curWeight;
     var weightunit = appState.curWeightUnits;
 
+    final ScrollController scrollController = ScrollController();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Drugs for $animal'),
@@ -132,22 +134,30 @@ class DosagePage extends StatelessWidget {
 
             // have a bunch of text here
             return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Animal: $animal", style: const TextStyle(fontSize: 20)),
-                  Text("Drug: $drugname", style: const TextStyle(fontSize: 20)),
-                  weightText,
-                  const SizedBox(height: 50),
-                  Text("Recommended Dosage: $dosageDisplay",
-                      style: const TextStyle(fontSize: 20)),
-                  Text("Concentration: $concentrationDisplay ",
-                      style: const TextStyle(fontSize: 20)),
-                  const SizedBox(height: 50),
-                  Text("Notes: $notesDisplay ",
-                      style: const TextStyle(fontSize: 20)),
-                ],
-              ),
+              child: Scrollbar(
+                  controller: scrollController,
+                  thumbVisibility: true,
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Animal: $animal",
+                            style: const TextStyle(fontSize: 20)),
+                        Text("Drug: $drugname",
+                            style: const TextStyle(fontSize: 20)),
+                        weightText,
+                        const SizedBox(height: 50),
+                        Text("Recommended Dosage: $dosageDisplay",
+                            style: const TextStyle(fontSize: 20)),
+                        Text("Concentration: $concentrationDisplay ",
+                            style: const TextStyle(fontSize: 20)),
+                        const SizedBox(height: 50),
+                        Text("Notes: $notesDisplay ",
+                            style: const TextStyle(fontSize: 20)),
+                      ],
+                    ),
+                  )),
             );
           } else if (snapshot.hasError) {
             // an error occurred while loading the data
