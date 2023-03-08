@@ -139,7 +139,7 @@ class DosagePage extends StatelessWidget {
                   Text("Drug: $drugname", style: const TextStyle(fontSize: 20)),
                   weightText,
                   const SizedBox(height: 50),
-                  Text("Dosage: $dosageDisplay",
+                  Text("Recommended Dosage: $dosageDisplay",
                       style: const TextStyle(fontSize: 20)),
                   Text("Concentration: $concentrationDisplay ",
                       style: const TextStyle(fontSize: 20)),
