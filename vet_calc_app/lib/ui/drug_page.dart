@@ -72,6 +72,9 @@ class DrugListPageState extends State<DrugPage> {
                 }
 
                 return Center(
+                    child: Scrollbar(
+                  controller: scrollController,
+                  thumbVisibility: true,
                   child: SingleChildScrollView(
                     controller: scrollController,
                     child: Column(
@@ -90,7 +93,7 @@ class DrugListPageState extends State<DrugPage> {
 
                         // Drug dropdown list
                         SizedBox(
-                          width: 250,
+                          width: 300,
                           child: DropdownButtonFormField(
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(
@@ -258,7 +261,7 @@ class DrugListPageState extends State<DrugPage> {
                       ],
                     ),
                   ),
-                );
+                ));
               } else if (snapshot.hasError) {
                 // an error occurred while loading the data
                 return Center(
