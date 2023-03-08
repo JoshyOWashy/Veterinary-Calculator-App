@@ -10,8 +10,6 @@ class AnimalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: make buttons dynamically generated
-    // TODO: add icons to buttons
     var appState = context.watch<MyAppState>();
 
     return Center(
