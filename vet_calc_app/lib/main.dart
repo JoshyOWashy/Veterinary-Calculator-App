@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vet_calc_app/animal_page.dart';
-import 'animals.dart';
+import 'package:vet_calc_app/ui/animal_page.dart';
+import 'data/animals.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'data/firebase_options.dart';
 
 const appName = "Vet RX Calculator";
 
