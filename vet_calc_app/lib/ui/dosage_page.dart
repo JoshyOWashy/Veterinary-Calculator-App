@@ -28,10 +28,10 @@ class DosagePage extends StatelessWidget {
 
     //if theres only one dosage
     int kgIdx = units.indexOf("kg");
-    String beginningSubstring = units.substring(0, kgIdx - 1);
-    String endSubstring = units.substring(kgIdx + 2);
+    String beforeKgString = units.substring(0, kgIdx - 1);
+    String afterKgString = units.substring(kgIdx + 2);
 
-    String unitSubstring = beginningSubstring + endSubstring;
+    String unitSubstring = beforeKgString + afterKgString;
 
     // debugPrint("unitSubstring: $unitSubstring");
 
@@ -61,90 +61,74 @@ class DosagePage extends StatelessWidget {
 
   String getConcentration(
       var concentration, var lowDosage, var highDosage, String dosageUnits) {
-    if (concentration == null) {
-      return "";
-    } else if (concentration == "Varies") {
-      return "Varies";
-    } else if (concentration == "See notes") {
-      return "See Notes";
-    } else {
-      String concentrationString = "";
-      bool sameDosage = true;
-      if (lowDosage != highDosage) {
-        sameDosage = false;
+    String concentrationString = "";
+    bool sameDosage = true;
+    if (lowDosage != highDosage) {
+      sameDosage = false;
+    }
+    for (var object in concentration) {
+      String concentrationUnits =
+          object["units"].substring(0, object["units"].indexOf("/"));
+      String concentrationAfterUnits = object["units"]
+          .substring(object["units"].indexOf("/") + 1, object["units"].length);
+
+      String newDosageUnits = "";
+
+      //see if dosage units are mg, µg or mEq
+      if (dosageUnits.contains("mg")) {
+        newDosageUnits = "mg";
+      } else if (dosageUnits.contains("µg")) {
+        newDosageUnits = "µg";
+      } else if (dosageUnits.contains("mEq")) {
+        newDosageUnits = "mEq";
       }
-      for (var object in concentration) {
-        String concentrationUnits =
-            object["units"].substring(0, object["units"].indexOf("/"));
-        String concentrationAfterUnits = object["units"].substring(
-            object["units"].indexOf("/") + 1, object["units"].length);
 
-        String newDosageUnits = "";
+      double lowConcentration = object["low"];
+      double highConcentration = object["high"];
+      double lowConcentrationConverted = object["low"] * 1000.0;
+      double highConcentrationConverted = object["high"] * 1000.0;
 
-        //see if dosage units are mg, µg or mEq
-        if (dosageUnits.contains("mg")) {
-          newDosageUnits = "mg";
-        } else if (dosageUnits.contains("µg")) {
-          newDosageUnits = "µg";
-        } else if (dosageUnits.contains("mEq")) {
-          newDosageUnits = "mEq";
-        }
-
-        //if the concentration is the same
-        if (object["low"] == object["high"]) {
-          //if concentration units are mg while dosage units are µg
-          if (concentrationUnits == "mg" && newDosageUnits == "µg") {
-            if (sameDosage) {
-              var newConcentration = object["low"] * 1000.0;
-              concentrationString =
-                  "$concentrationString ${(lowDosage / newConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
-            } else {
-              var newConcentration = object["low"] * 1000.0;
-
-              concentrationString =
-                  "$concentrationString ${(lowDosage / newConcentration).toStringAsFixed(5)} - ${(highDosage / newConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
-            }
+      //if the concentration is the same
+      if (object["low"] == object["high"]) {
+        //if concentration units are mg while dosage units are µg
+        if (concentrationUnits == "mg" && newDosageUnits == "µg") {
+          if (sameDosage) {
+            concentrationString =
+                "$concentrationString ${(lowDosage / lowConcentrationConverted).toStringAsFixed(5)} $concentrationAfterUnits\n";
           } else {
-            if (sameDosage) {
-              var newConcentration = object["low"];
-              concentrationString =
-                  "$concentrationString ${(lowDosage / newConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
-            } else {
-              var newConcentration = object["low"];
-              concentrationString =
-                  "$concentrationString ${(lowDosage / newConcentration).toStringAsFixed(5)} - ${(highDosage / newConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
-            }
+            concentrationString =
+                "$concentrationString ${(lowDosage / lowConcentrationConverted).toStringAsFixed(5)} - ${(highDosage / lowConcentrationConverted).toStringAsFixed(5)} $concentrationAfterUnits\n";
           }
         } else {
-          if (concentrationUnits == "mg" && newDosageUnits == "µg") {
-            if (sameDosage) {
-              var newLowConcentration = object["low"] * 1000.0;
-              var newHighConcentration = object["high"] * 1000.0;
-              concentrationString =
-                  "$concentrationString ${(lowDosage / newLowConcentration).toStringAsFixed(5)} - ${(lowDosage / newHighConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
-            } else {
-              var newLowConcentration = object["low"] * 1000.0;
-              var newHighConcentration = object["high"] * 1000.0;
-              concentrationString =
-                  "$concentrationString ${(lowDosage / newLowConcentration).toStringAsFixed(5)} - ${(lowDosage / newHighConcentration).toStringAsFixed(5)} to ${(highDosage / newLowConcentration).toStringAsFixed(5)} - ${(highDosage / newHighConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
-            }
+          if (sameDosage) {
+            concentrationString =
+                "$concentrationString ${(lowDosage / lowConcentration).toStringAsFixed(5)} $concentrationAfterUnits\n";
           } else {
-            if (sameDosage) {
-              var newLowConcentration = object["low"];
-              var newHighConcentration = object["high"];
-              concentrationString =
-                  "$concentrationString ${(lowDosage / newLowConcentration).toStringAsFixed(5)} - ${(lowDosage / newHighConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
-            } else {
-              var newLowConcentration = object["low"];
-              var newHighConcentration = object["high"];
-              concentrationString =
-                  "$concentrationString ${(lowDosage / newLowConcentration).toStringAsFixed(5)} - ${(lowDosage / newHighConcentration).toStringAsFixed(5)} to ${(highDosage / newLowConcentration).toStringAsFixed(5)} - ${(newHighConcentration).toStringAsFixed(5)} $concentrationAfterUnits";
-            }
+            concentrationString =
+                "$concentrationString ${(lowDosage / lowConcentration).toStringAsFixed(5)} - ${(highDosage / lowConcentration).toStringAsFixed(5)} $concentrationAfterUnits\n";
+          }
+        }
+      } else {
+        if (concentrationUnits == "mg" && newDosageUnits == "µg") {
+          if (sameDosage) {
+            concentrationString =
+                "$concentrationString ${(lowDosage / lowConcentrationConverted).toStringAsFixed(5)} - ${(lowDosage / highConcentrationConverted).toStringAsFixed(5)} $concentrationAfterUnits\n";
+          } else {
+            concentrationString =
+                "$concentrationString ${(lowDosage / lowConcentrationConverted).toStringAsFixed(5)} - ${(lowDosage / highConcentrationConverted).toStringAsFixed(5)} to ${(highDosage / lowConcentrationConverted).toStringAsFixed(5)} - ${(highDosage / highConcentrationConverted).toStringAsFixed(5)} $concentrationAfterUnits\n";
+          }
+        } else {
+          if (sameDosage) {
+            concentrationString =
+                "$concentrationString ${(lowDosage / lowConcentration).toStringAsFixed(5)} - ${(lowDosage / highConcentration).toStringAsFixed(5)} $concentrationAfterUnits\n";
+          } else {
+            concentrationString =
+                "$concentrationString ${(lowDosage / lowConcentration).toStringAsFixed(5)} - ${(lowDosage / highConcentration).toStringAsFixed(5)} to ${(highDosage / lowConcentration).toStringAsFixed(5)} - ${(highConcentration).toStringAsFixed(5)} $concentrationAfterUnits\n";
           }
         }
       }
-      return concentrationString;
     }
+    return concentrationString;
   }
 
   @override
@@ -180,6 +164,7 @@ class DosagePage extends StatelessWidget {
               isLbs = true;
             }
 
+            // dosage
             // returns dosage in [0] and units in [1]
             var dosageList = getDosage(
                 weight.toDouble(),
@@ -188,18 +173,18 @@ class DosagePage extends StatelessWidget {
                 mainDrug['Units'],
                 isLbs);
 
-            // dosage
             var dosageDisplay = dosageList[0];
 
             // concentration
             String concentrationDisplay = "";
 
-            var concentration = getConcentration(mainDrug['Concentration'],
-                dosageList[2], dosageList[3], dosageList[1]);
-            if (concentration == "") {
+            if (mainDrug['Concentration'] == null) {
               concentrationDisplay = "N/A";
+            } else if (mainDrug['Concentration'] is String) {
+              concentrationDisplay = mainDrug['Concentration'];
             } else {
-              concentrationDisplay = concentration;
+              concentrationDisplay = getConcentration(mainDrug['Concentration'],
+                  dosageList[2], dosageList[3], dosageList[1]);
             }
 
             // notes
@@ -211,6 +196,7 @@ class DosagePage extends StatelessWidget {
               notesDisplay = mainDrug['Notes'];
             }
 
+            // weight
             var weightText = Text("Weight: $weight $weightunit",
                 style: const TextStyle(fontSize: 20));
             if (isLbs) {
@@ -237,10 +223,10 @@ class DosagePage extends StatelessWidget {
                         const SizedBox(height: 50),
                         Text("Recommended Dosage: $dosageDisplay",
                             style: const TextStyle(fontSize: 20)),
-                        Text("Concentration: $concentrationDisplay ",
+                        Text("Concentration: $concentrationDisplay",
                             style: const TextStyle(fontSize: 20)),
                         const SizedBox(height: 50),
-                        Text("Notes: $notesDisplay ",
+                        Text("Notes: $notesDisplay",
                             style: const TextStyle(fontSize: 20)),
                       ],
                     ),
