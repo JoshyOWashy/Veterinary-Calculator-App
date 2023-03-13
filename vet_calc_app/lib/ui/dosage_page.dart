@@ -83,13 +83,13 @@ class DosagePage extends StatelessWidget {
         newDosageUnits = "mEq";
       }
 
-      double lowConcentration = object["low"];
-      double highConcentration = object["high"];
-      double lowConcentrationConverted = object["low"] * 1000.0;
-      double highConcentrationConverted = object["high"] * 1000.0;
+      double lowConcentration = object["low"].toDouble();
+      double highConcentration = object["high"].toDouble();
+      double lowConcentrationConverted = object["low"].toDouble() * 1000.0;
+      double highConcentrationConverted = object["high"].toDouble() * 1000.0;
 
       //if the concentration is the same
-      if (object["low"] == object["high"]) {
+      if (lowConcentration == highConcentration) {
         //if concentration units are mg while dosage units are µg
         if (concentrationUnits == "mg" && newDosageUnits == "µg") {
           if (sameDosage) {
