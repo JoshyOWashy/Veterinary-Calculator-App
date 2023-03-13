@@ -59,6 +59,7 @@ class AnimalPage extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             Wrap(
+              alignment: WrapAlignment.center,
               spacing: 30,
               runSpacing: 30,
               children: animalButtons,
