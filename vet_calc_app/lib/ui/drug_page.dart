@@ -66,10 +66,15 @@ class DrugListPageState extends State<DrugPage> {
                   );
                 }
 
+                /*
+                  doesnt like when appState is called in build
+                */
+
                 // default dropdown value
-                if (appState.curDrug.isEmpty && dropdownItems.isNotEmpty) {
-                  appState.chooseDrug(dropdownItems.first.value.toString());
-                }
+                // if (appState.curDrug.isEmpty && dropdownItems.isNotEmpty) {
+                //   appState.chooseDrug(dropdownItems.first.value.toString());
+                // }
+                var drugDropDownValue = dropdownItems.first.value.toString();
 
                 return Center(
                     child: Scrollbar(
@@ -105,7 +110,7 @@ class DrugListPageState extends State<DrugPage> {
                                 ),
                               ),
                             ),
-                            value: appState.curDrug,
+                            value: drugDropDownValue,
                             onChanged: (String? newValue) {
                               if (newValue == null ||
                                   newValue == appState.curDrug) {
