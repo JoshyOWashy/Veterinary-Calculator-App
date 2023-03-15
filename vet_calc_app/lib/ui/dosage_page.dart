@@ -201,7 +201,7 @@ class DosagePage extends StatelessWidget {
                 style: const TextStyle(fontSize: 20));
             if (isLbs) {
               weightText = Text(
-                  "Weight: $weight $weightunit (${weight * 0.453592} kg)",
+                  "Weight: $weight $weightunit (${(weight * 0.453592).toStringAsFixed(2)} kg)",
                   style: const TextStyle(fontSize: 20));
             }
 
