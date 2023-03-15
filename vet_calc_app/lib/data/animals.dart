@@ -8,7 +8,7 @@ String animalToString(Animal animal) {
     case Animal.equine:
       return 'Equine';
     case Animal.sheepGoat:
-      return 'Sheep \nand Goat';
+      return 'Sheep Goat';
     case Animal.camelid:
       return 'Camelid';
     case Animal.swine:
