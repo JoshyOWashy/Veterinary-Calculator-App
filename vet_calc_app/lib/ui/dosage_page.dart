@@ -226,8 +226,13 @@ class DosagePage extends StatelessWidget {
                         Text("Concentration: $concentrationDisplay",
                             style: const TextStyle(fontSize: 20)),
                         const SizedBox(height: 50),
-                        Text("Notes: $notesDisplay",
-                            style: const TextStyle(fontSize: 20)),
+                        Padding(
+                          padding: const EdgeInsets.all(
+                              16.0), // add desired padding value here
+                          child: Text("Notes: $notesDisplay",
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(fontSize: 20)),
+                        ),
                       ],
                     ),
                   )),
