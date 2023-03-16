@@ -61,7 +61,7 @@ class DrugListPageState extends State<DrugPage> {
                   dropdownItems.add(
                     DropdownMenuItem(
                       value: drug['Name'],
-                      child: Text(drug['Name']),
+                      child: Text(drug['Name'], overflow: TextOverflow.clip),
                     ),
                   );
                 }
@@ -122,6 +122,7 @@ class DrugListPageState extends State<DrugPage> {
                                 appState.chooseDrug(newValue);
                               });
                             },
+                            isExpanded: true,
                             items: dropdownItems,
                           ),
                         ),
