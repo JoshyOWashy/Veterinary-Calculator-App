@@ -232,6 +232,9 @@ class DrugListPageState extends State<DrugPage> {
                                     if (_formKey.currentState == null) return;
 
                                     if (_formKey.currentState!.validate()) {
+                                      if (appState.curDrug == '') {
+                                        appState.chooseDrug(drugDropDownValue);
+                                      }
                                       appState
                                           .chooseWeight(textController.text);
                                       appState.changeWeightUnits(
