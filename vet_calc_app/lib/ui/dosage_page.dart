@@ -222,8 +222,10 @@ class DosagePage extends StatelessWidget {
                         weightText,
                         const SizedBox(height: 50),
                         Text("Recommended Dosage: $dosageDisplay",
+                            textAlign: TextAlign.center,
                             style: const TextStyle(fontSize: 20)),
                         Text("Concentration: $concentrationDisplay",
+                            textAlign: TextAlign.center,
                             style: const TextStyle(fontSize: 20)),
                         const SizedBox(height: 50),
                         Padding(
