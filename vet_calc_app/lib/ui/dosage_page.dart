@@ -143,7 +143,7 @@ class DosagePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Drugs for $animal'),
+        title: Text('$animal Dosage Calculation'),
       ),
       body: FutureBuilder(
         future: databaseQuery(animal),

@@ -41,7 +41,7 @@ class DrugListPageState extends State<DrugPage> {
         },
         child: Scaffold(
           appBar: AppBar(
-            title: Text('$animal Drug Calculation'),
+            title: Text('$animal Drug Selection'),
           ),
           body: FutureBuilder(
             future: databaseQuery(animal),
