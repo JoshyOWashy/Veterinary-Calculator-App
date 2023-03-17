@@ -33,9 +33,9 @@ Widget animalIcon(Animal animal) {
     case Animal.camelid:
       return const Icon(CustomIcons.giraffe);
     case Animal.swine:
-      return const Icon(CustomIcons.piggy_bank);
+      return const Icon(CustomIcons.piggyBank);
     case Animal.cattle:
-      return const Icon(CustomIcons.hat_cowboy);
+      return const Icon(CustomIcons.hatCowboy);
     case Animal.dog:
       return const Icon(CustomIcons.dog);
     case Animal.cat:

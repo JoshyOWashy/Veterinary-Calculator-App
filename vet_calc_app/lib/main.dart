@@ -4,6 +4,7 @@ import 'package:vet_calc_app/ui/animal_page.dart';
 import 'data/animals.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'data/firebase_options.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 const appName = "Vet RX Calculator";
 
@@ -61,8 +62,31 @@ class MyAppState extends ChangeNotifier {
   }
 
   void changeWeightUnits(String units) {
+    if (units == "lbs") {
+      saveWeightPreference(true);
+    } else {
+      saveWeightPreference(false);
+    }
+
     curWeightUnits = units;
     notifyListeners();
+  }
+
+  void saveWeightPreference(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // set to true for lbs, false for kg
+    prefs.setBool('curWeightUnits', value);
+  }
+
+  void readWeightPreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool myPreference = prefs.getBool('curWeightUnits') ?? false;
+
+    if (myPreference) {
+      curWeightUnits = "lbs";
+    } else {
+      curWeightUnits = "kg";
+    }
   }
 }
 
@@ -78,6 +102,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    context.read<MyAppState>().readWeightPreference();
+
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
