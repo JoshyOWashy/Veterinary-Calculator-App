@@ -139,10 +139,10 @@ class DrugListPageState extends State<DrugPage> {
                                   children: [
                                     // Weight text field
                                     SizedBox(
-                                      width: 350,
+                                      width: 270,
                                       child: Padding(
                                         padding:
-                                            const EdgeInsets.only(right: 20.0),
+                                            const EdgeInsets.only(right: 15.0),
                                         child: SizedBox(
                                           height: 100,
                                           child: TextFormField(
@@ -176,43 +176,41 @@ class DrugListPageState extends State<DrugPage> {
                                     SizedBox(
                                       width: 70,
                                       // bottom padding to align with text field
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 44.0),
-                                        child: DropdownButtonFormField(
-                                          decoration: const InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Colors.grey,
-                                              ),
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(5.0),
-                                              ),
+
+                                      child: DropdownButtonFormField(
+                                        decoration: const InputDecoration(
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.grey,
+                                            ),
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(5.0),
                                             ),
                                           ),
-                                          value: appState.curWeightUnits,
-                                          onChanged: (String? newValue) {
-                                            if (newValue == null ||
-                                                newValue ==
-                                                    appState.curWeightUnits) {
-                                              return;
-                                            }
-
-                                            setState(() {
-                                              // update weight units
-                                              appState
-                                                  .changeWeightUnits(newValue);
-                                            });
-                                          },
-                                          items: <String>['kg', 'lbs']
-                                              .map<DropdownMenuItem<String>>(
-                                                  (String value) {
-                                            return DropdownMenuItem<String>(
-                                              value: value,
-                                              child: Text(value),
-                                            );
-                                          }).toList(),
                                         ),
+                                        value: appState.curWeightUnits,
+                                        onChanged: (String? newValue) {
+                                          if (newValue == null ||
+                                              newValue ==
+                                                  appState.curWeightUnits) {
+                                            return;
+                                          }
+
+                                          setState(() {
+                                            // update weight units
+                                            appState
+                                                .changeWeightUnits(newValue);
+                                          });
+                                        },
+                                        isExpanded: true,
+                                        items: <String>['kg', 'lbs']
+                                            .map<DropdownMenuItem<String>>(
+                                                (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
                                       ),
                                     ),
                                   ],
