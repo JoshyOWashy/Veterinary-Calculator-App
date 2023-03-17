@@ -45,12 +45,12 @@ class CustomIcons {
       IconData(0xe95f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData sheep =
       IconData(0xea94, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData piggy_bank =
+  static const IconData piggyBank =
       IconData(0xf4d3, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData dog =
       IconData(0xf6d3, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData horse =
       IconData(0xf6f0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData hat_cowboy =
+  static const IconData hatCowboy =
       IconData(0xf8c0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
