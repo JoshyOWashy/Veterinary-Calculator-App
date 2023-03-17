@@ -135,9 +135,11 @@ class DrugListPageState extends State<DrugPage> {
                             child: Column(
                               children: <Widget>[
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     // Weight text field
-                                    Expanded(
+                                    SizedBox(
+                                      width: 350,
                                       child: Padding(
                                         padding:
                                             const EdgeInsets.only(right: 20.0),
