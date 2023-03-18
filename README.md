@@ -16,26 +16,23 @@ The Vet RX Calculator provides the following features for users:
 - Select an animal to work with
 
 
-![image](https://user-images.githubusercontent.com/72106212/226070301-e1b11dab-9429-45a1-8260-f2c4917c4ec3.png)
+<img src='https://user-images.githubusercontent.com/72106212/226070301-e1b11dab-9429-45a1-8260-f2c4917c4ec3.png' alt='Animal selection page'  height='700'>
 
 - Select a compatible drug to administer to the animal
 
 
-![image](https://user-images.githubusercontent.com/72106212/226070353-2ca5626a-3a7e-4c9c-a4c3-369c536be60d.png)
-
-
-![image](https://user-images.githubusercontent.com/72106212/226070364-1c35ef3d-dbf5-48b7-8a45-eaa68da2a374.png)
+<img src='https://user-images.githubusercontent.com/72106212/226070353-2ca5626a-3a7e-4c9c-a4c3-369c536be60d.png' alt='general page for choosing drugs/weight' height='700'>  <img src='https://user-images.githubusercontent.com/72106212/226070364-1c35ef3d-dbf5-48b7-8a45-eaa68da2a374.png' alt='list of drugs for the animal' height='700'>
 
 - Enter the animal's weight
 
 
-![image](https://user-images.githubusercontent.com/72106212/226070375-53718c7d-db2b-4246-8410-7b3aa77f73b9.png)
+<img src='https://user-images.githubusercontent.com/72106212/226070375-53718c7d-db2b-4246-8410-7b3aa77f73b9.png' alt='entering the animals weight' height='700'>
 
 - Calculate the recommended dose of the drug
 - Provide extra information about the drug when applicable
 
 
-![image](https://user-images.githubusercontent.com/72106212/226070393-cca1359e-03d0-4b9b-bb26-4a277b36a092.png)
+<img src='https://user-images.githubusercontent.com/72106212/226070393-cca1359e-03d0-4b9b-bb26-4a277b36a092.png' alt='dosage calculation results' height='700'>
 
 
 # Usage
