@@ -9,6 +9,8 @@
 .history
 .svn/
 migrate_working_dir/
+/lib/data/firebase_options.dart
+vet_calc_app/lib/data/firebase_options.dart
 
 # IntelliJ related
 *.iml
