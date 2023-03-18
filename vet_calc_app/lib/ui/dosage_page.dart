@@ -197,12 +197,33 @@ class DosagePage extends StatelessWidget {
             }
 
             // weight
-            var weightText = Text("Weight: $weight $weightunit",
-                style: const TextStyle(fontSize: 20));
+            Wrap weightText;
             if (isLbs) {
-              weightText = Text(
-                  "Weight: $weight $weightunit (${(weight * 0.453592).toStringAsFixed(2)} kg)",
-                  style: const TextStyle(fontSize: 20));
+              // weightText = Text(
+              //     "Weight: $weight $weightunit (${(weight * 0.453592).toStringAsFixed(2)} kg)",
+              //     style: const TextStyle(fontSize: 20));
+              weightText = Wrap(alignment: WrapAlignment.center, children: [
+                const Text("Weight: ",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20)),
+                Text(
+                    "$weight $weightunit (${(weight * 0.453592).toStringAsFixed(2)} kg)",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold))
+              ]);
+            } else {
+              // weightText = Text("Weight: $weight $weightunit",
+              //     style: const TextStyle(fontSize: 20));
+              weightText = Wrap(alignment: WrapAlignment.center, children: [
+                const Text("Weight: ",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20)),
+                Text("$weight $weightunit",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold))
+              ]);
             }
 
             // have a bunch of text here
@@ -215,25 +236,72 @@ class DosagePage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Animal: $animal",
-                            style: const TextStyle(fontSize: 20)),
-                        Text("Drug: $drugname",
-                            style: const TextStyle(fontSize: 20)),
+                        // Text("Animal: $animal",
+                        //     style: const TextStyle(fontSize: 20)),
+                        Wrap(alignment: WrapAlignment.center, children: [
+                          const Text("Animal: ",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 20)),
+                          Text(animal,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold))
+                        ]),
+                        // Text("Drug: $drugname",
+                        //     style: const TextStyle(fontSize: 20)),
+                        Wrap(alignment: WrapAlignment.center, children: [
+                          const Text("Drug: ",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 20)),
+                          Text(drugname,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold))
+                        ]),
                         weightText,
                         const SizedBox(height: 50),
-                        Text("Recommended Dosage: $dosageDisplay",
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(fontSize: 20)),
-                        Text("Concentration: $concentrationDisplay",
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(fontSize: 20)),
-                        const SizedBox(height: 50),
+                        // Text("Recommended Dosage: $dosageDisplay",
+                        //     textAlign: TextAlign.center,
+                        //     style: const TextStyle(fontSize: 20)),
+                        Wrap(alignment: WrapAlignment.center, children: [
+                          const Text("Recommended Dosage: ",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 20)),
+                          Text(dosageDisplay,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold))
+                        ]),
+                        const SizedBox(height: 20),
+                        // Text("Concentration: $concentrationDisplay",
+                        //     textAlign: TextAlign.center,
+                        //     style: const TextStyle(fontSize: 20)),
+                        Wrap(alignment: WrapAlignment.center, children: [
+                          const Text("Concentration: ",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 20)),
+                          Text(concentrationDisplay,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold))
+                        ]),
+                        const SizedBox(height: 25),
                         Padding(
                           padding: const EdgeInsets.all(
                               16.0), // add desired padding value here
-                          child: Text("Notes: $notesDisplay",
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 20)),
+                          child:
+                              Wrap(alignment: WrapAlignment.center, children: [
+                            const Text("Notes: ",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 20)),
+                            Text(notesDisplay,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold))
+                          ]),
+                          //Text("Notes: $notesDisplay",
+                          //     textAlign: TextAlign.center,
+                          //     style: const TextStyle(fontSize: 20)),
                         ),
                       ],
                     ),
