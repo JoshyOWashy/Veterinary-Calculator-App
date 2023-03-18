@@ -2,6 +2,7 @@
 The Vet RX Calculator is a mobile application available on iOS and Android built with Dart/Flutter that allows users to quickly calculate the recommended dosage of a drug for a specific animal based on certain parameters. This provides quick and efficient calculations for veterinarians, students, and other animal health professionals.
 
 # Authors
+- **Project Partner:** [Lacy Kamm](lacy.kamm@oregonstate.edu)
 - [Robert Houeland](mailto:houelanr@oregonstate.edu)
 - [Joshua Minyard](mailto:minyardj@oregonstate.edu)
 - [Nawaf Alothman](mailto:alothman@oregonstate.edu)
