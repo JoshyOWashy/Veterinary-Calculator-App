@@ -49,7 +49,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1054015406612',
     projectId: 'veterinary-application-bfb4e',
     authDomain: 'veterinary-application-bfb4e.firebaseapp.com',
-    databaseURL: 'https://veterinary-application-bfb4e-default-rtdb.firebaseio.com',
+    databaseURL:
+        'https://veterinary-application-bfb4e-default-rtdb.firebaseio.com',
     storageBucket: 'veterinary-application-bfb4e.appspot.com',
     measurementId: 'G-EC4TYM4BRX',
   );
@@ -59,7 +60,8 @@ class DefaultFirebaseOptions {
     appId: '1:1054015406612:android:2bfa13d4f088a1d534dd01',
     messagingSenderId: '1054015406612',
     projectId: 'veterinary-application-bfb4e',
-    databaseURL: 'https://veterinary-application-bfb4e-default-rtdb.firebaseio.com',
+    databaseURL:
+        'https://veterinary-application-bfb4e-default-rtdb.firebaseio.com',
     storageBucket: 'veterinary-application-bfb4e.appspot.com',
   );
 
@@ -68,9 +70,11 @@ class DefaultFirebaseOptions {
     appId: '1:1054015406612:ios:580775f60e7e206b34dd01',
     messagingSenderId: '1054015406612',
     projectId: 'veterinary-application-bfb4e',
-    databaseURL: 'https://veterinary-application-bfb4e-default-rtdb.firebaseio.com',
+    databaseURL:
+        'https://veterinary-application-bfb4e-default-rtdb.firebaseio.com',
     storageBucket: 'veterinary-application-bfb4e.appspot.com',
-    iosClientId: '1054015406612-8282o0p0f1dr9o7un0m9lahdssscj8v4.apps.googleusercontent.com',
+    iosClientId:
+        '1054015406612-8282o0p0f1dr9o7un0m9lahdssscj8v4.apps.googleusercontent.com',
     iosBundleId: 'com.example.vetCalcApp',
   );
 
@@ -79,9 +83,11 @@ class DefaultFirebaseOptions {
     appId: '1:1054015406612:ios:580775f60e7e206b34dd01',
     messagingSenderId: '1054015406612',
     projectId: 'veterinary-application-bfb4e',
-    databaseURL: 'https://veterinary-application-bfb4e-default-rtdb.firebaseio.com',
+    databaseURL:
+        'https://veterinary-application-bfb4e-default-rtdb.firebaseio.com',
     storageBucket: 'veterinary-application-bfb4e.appspot.com',
-    iosClientId: '1054015406612-8282o0p0f1dr9o7un0m9lahdssscj8v4.apps.googleusercontent.com',
+    iosClientId:
+        '1054015406612-8282o0p0f1dr9o7un0m9lahdssscj8v4.apps.googleusercontent.com',
     iosBundleId: 'com.example.vetCalcApp',
   );
 }
