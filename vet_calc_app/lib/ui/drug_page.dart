@@ -137,6 +137,7 @@ class DrugListPageState extends State<DrugPage> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
+                                    // TODO: boxes are unaligned, at least on iOS and MacOS
                                     // Weight text field
                                     SizedBox(
                                       width: 240,
