@@ -139,7 +139,7 @@ class DrugListPageState extends State<DrugPage> {
                                   children: [
                                     // Weight text field
                                     SizedBox(
-                                      width: 270,
+                                      width: 240,
                                       child: Padding(
                                         padding:
                                             const EdgeInsets.only(right: 15.0),
