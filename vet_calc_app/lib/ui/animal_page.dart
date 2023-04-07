@@ -31,7 +31,7 @@ class AnimalPage extends StatelessWidget {
               );
             },
             icon: icon,
-            label: Text(animalName, style: const TextStyle(fontSize: 20)),
+            label: Text(animalName, style: const TextStyle(fontSize: 18)),
           ),
         ),
       );
@@ -45,14 +45,14 @@ class AnimalPage extends StatelessWidget {
           children: <Widget>[
             const SafeArea(
               child: Padding(
-                padding: EdgeInsets.all(30),
+                padding: EdgeInsets.all(15),
                 child: Text(
                   appName,
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 5),
             const Text(
               'Select an animal:',
               style: TextStyle(fontSize: 30),
@@ -60,8 +60,8 @@ class AnimalPage extends StatelessWidget {
             const SizedBox(height: 30),
             Wrap(
               alignment: WrapAlignment.center,
-              spacing: 30,
-              runSpacing: 30,
+              spacing: 40,
+              runSpacing: 20,
               children: animalButtons,
             ),
           ],
