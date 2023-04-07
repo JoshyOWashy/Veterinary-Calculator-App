@@ -135,30 +135,28 @@ class DrugListPageState extends State<DrugPage> {
                             child: Column(
                               children: <Widget>[
                                 Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     // Weight text field
                                     SizedBox(
-                                      width: 270,
+                                      width: 220,
                                       child: Padding(
                                         padding:
-                                            const EdgeInsets.only(right: 15.0),
+                                            const EdgeInsets.only(right: 10.0),
                                         child: SizedBox(
                                           height: 100,
                                           child: TextFormField(
                                             controller: textController,
                                             keyboardType: TextInputType.number,
-                                            inputFormatters: <
-                                                TextInputFormatter>[
+                                            inputFormatters: <TextInputFormatter>[
                                               FilteringTextInputFormatter.allow(
                                                 RegExp(r'(^\d*\.?\d*)'),
                                               ),
                                             ],
-                                            decoration: InputDecoration(
-                                              border:
-                                                  const OutlineInputBorder(),
-                                              hintText:
-                                                  'Enter Weight for $animal',
+                                            decoration: const InputDecoration(
+                                              border: OutlineInputBorder(),
+                                              hintText: 'Enter Weight',
                                             ),
                                             validator: (value) {
                                               if (value == null ||
@@ -174,9 +172,8 @@ class DrugListPageState extends State<DrugPage> {
 
                                     // Weight units dropdown list
                                     SizedBox(
-                                      width: 70,
+                                      width: 90,
                                       // bottom padding to align with text field
-
                                       child: DropdownButtonFormField(
                                         decoration: const InputDecoration(
                                           border: OutlineInputBorder(
