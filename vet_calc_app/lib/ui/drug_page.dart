@@ -135,15 +135,14 @@ class DrugListPageState extends State<DrugPage> {
                             child: Column(
                               children: <Widget>[
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    // TODO: boxes are unaligned, at least on iOS and MacOS
                                     // Weight text field
                                     SizedBox(
                                       width: 240,
                                       child: Padding(
                                         padding:
-                                            const EdgeInsets.only(right: 15.0),
+                                            const EdgeInsets.only(right: 10.0),
                                         child: SizedBox(
                                           height: 100,
                                           child: TextFormField(
@@ -175,9 +174,8 @@ class DrugListPageState extends State<DrugPage> {
 
                                     // Weight units dropdown list
                                     SizedBox(
-                                      width: 70,
+                                      width: 100,
                                       // bottom padding to align with text field
-
                                       child: DropdownButtonFormField(
                                         decoration: const InputDecoration(
                                           border: OutlineInputBorder(
