@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import '../main.dart';
 import 'package:flutter/services.dart';
 import 'dosage_page.dart';
+import '../data/animals.dart';
 
 class DrugPage extends StatefulWidget {
   const DrugPage({Key? key}) : super(key: key);
@@ -67,13 +68,10 @@ class DrugListPageState extends State<DrugPage> {
                 }
 
                 /*
-                  doesnt like when appState is called in build
+                  doesn't like when appState is called in build
                 */
 
                 // default dropdown value
-                // if (appState.curDrug.isEmpty && dropdownItems.isNotEmpty) {
-                //   appState.chooseDrug(dropdownItems.first.value.toString());
-                // }
                 var drugDropDownValue = dropdownItems.first.value.toString();
 
                 return Center(
@@ -85,6 +83,16 @@ class DrugListPageState extends State<DrugPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // animal icon
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: SizedBox(
+                            child: animalIcon(stringToAnimal(animal)),
+                          ),
+                        ),
+
+                        const SizedBox(height: 15),
+
                         // Text for drug selection
                         const Text(
                           'Select a drug:',
@@ -149,7 +157,8 @@ class DrugListPageState extends State<DrugPage> {
                                           child: TextFormField(
                                             controller: textController,
                                             keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[
+                                            inputFormatters: <
+                                                TextInputFormatter>[
                                               FilteringTextInputFormatter.allow(
                                                 RegExp(r'(^\d*\.?\d*)'),
                                               ),

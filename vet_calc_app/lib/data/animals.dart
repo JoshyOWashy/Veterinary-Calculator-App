@@ -24,6 +24,27 @@ String animalToString(Animal animal) {
   }
 }
 
+Animal stringToAnimal(String animal) {
+  switch (animal) {
+    case 'Equine':
+      return Animal.equine;
+    case 'Sheep Goat':
+      return Animal.sheepGoat;
+    case 'Camelid':
+      return Animal.camelid;
+    case 'Swine':
+      return Animal.swine;
+    case 'Cattle':
+      return Animal.cattle;
+    case 'Dog':
+      return Animal.dog;
+    case 'Cat':
+      return Animal.cat;
+    default:
+      throw UnimplementedError('no animal for $animal');
+  }
+}
+
 Widget animalIcon(Animal animal) {
   switch (animal) {
     case Animal.equine:

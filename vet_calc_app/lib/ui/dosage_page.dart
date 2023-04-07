@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import '../main.dart';
+import '../data/animals.dart';
 
 class DosagePage extends StatelessWidget {
   const DosagePage({super.key});
@@ -236,6 +237,16 @@ class DosagePage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // animal icon
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: SizedBox(
+                            child: animalIcon(stringToAnimal(animal)),
+                          ),
+                        ),
+
+                        const SizedBox(height: 15),
+
                         // Text("Animal: $animal",
                         //     style: const TextStyle(fontSize: 20)),
                         Wrap(alignment: WrapAlignment.center, children: [
