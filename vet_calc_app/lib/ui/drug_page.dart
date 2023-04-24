@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import '../main.dart';
 import 'package:flutter/services.dart';
-import 'new_dosage_page.dart';
+import 'dosage_page.dart';
 
 class DrugPage extends StatefulWidget {
   const DrugPage({Key? key}) : super(key: key);
@@ -249,7 +249,7 @@ class DrugListPageState extends State<DrugPage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const NewDosagePage()),
+                                                const DosagePage()),
                                       );
                                     }
                                   },
