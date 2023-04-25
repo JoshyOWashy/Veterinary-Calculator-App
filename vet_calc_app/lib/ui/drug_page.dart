@@ -149,7 +149,8 @@ class DrugListPageState extends State<DrugPage> {
                                           child: TextFormField(
                                             controller: textController,
                                             keyboardType: TextInputType.number,
-                                            inputFormatters: <TextInputFormatter>[
+                                            inputFormatters: <
+                                                TextInputFormatter>[
                                               FilteringTextInputFormatter.allow(
                                                 RegExp(r'(^\d*\.?\d*)'),
                                               ),
