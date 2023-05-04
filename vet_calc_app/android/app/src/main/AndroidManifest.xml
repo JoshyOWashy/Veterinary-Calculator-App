@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.vet_calc_app">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="Vet RX Calculator"
         android:name="${applicationName}"
