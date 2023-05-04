@@ -411,7 +411,7 @@ class DosagePage extends StatelessWidget {
 
                         //concentration
                         Wrap(alignment: WrapAlignment.center, children: [
-                          const Text("Concentration:",
+                          const Text("Volume: ",
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 20)),
                           Text(concentrationDisplay,
