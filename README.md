@@ -48,6 +48,34 @@ The Vet RX Calculator provides the following features for users:
 
 To use the Animal Drug Dose Calculator, simply download the app onto your mobile device and launch it. Select the animal you wish to work with from the main menu. From there, select the drug you wish to administer to the animal. Enter the animal's weight in pounds and press the "Calculate" button to get the recommended dose of the drug. If applicable, the app will also provide extra information about the drug. After the calculations are done you have the option of pressing the back button to get a drug dosage for the same animal, or pressing the home button to choose a different animal.
 
+## How to run this app locally
+
+The Veterinary Calculator app is built on the [Flutter](https://docs.flutter.dev/get-started/install) framework and will need to be downloaded to be able to build and run this app. Once Flutter is installed, open a terminal and type  
+
+```bash
+flutter doctor -v
+```
+
+This will show you everything else that needs to be downloaded and installed to ensure that everything for flutter is working.
+
+To run the app on emulators, the easiest way for Android is to download [Android Studio](https://developer.android.com/studio) and create an emulator through their [Device Manager](https://developer.android.com/studio/run/managing-avds) which will create an android device and allow you to run the app on it. For iOS, [Xcode](https://developer.apple.com/xcode/) and a Mac is needed to create an iOS simulator to run the app.
+
+To run the app type
+
+```bash
+flutter run -d {device name}
+```
+
+with `device name` being the specific device, such as iOS or Android emulator, that you want to run the app on. To get a list of devices type
+
+```bash
+flutter devices
+```
+
+## Repository Navigation
+
+All of the files for the UI of the app is located at `vet_calc_app/lib` with the different screens being in `ui`. Files for specific runners such as android and ios are located in `vet_calc_app` in their corresponding folders.
+
 ## License
 
 TBD
