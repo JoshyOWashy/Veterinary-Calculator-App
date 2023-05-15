@@ -72,6 +72,8 @@ with `device name` being the specific device, such as iOS or Android emulator, t
 flutter devices
 ```
 
+**Note:** The file '/lib/data/firebase_options.dart' is excluded from this repository as it contains a private API key. You will need to supply your own firebase API key to properly run the app and recieve information from a database.
+
 ## Repository Navigation
 
 All of the files for the UI of the app is located at `vet_calc_app/lib` with the different screens being in `ui`. Files for specific runners such as android and ios are located in `vet_calc_app` in their corresponding folders.
