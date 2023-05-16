@@ -16,8 +16,6 @@ class DosagePage extends StatelessWidget {
     return event.snapshot.value;
   }
 
-  //TODO: update concentration function to account for multiple dosages
-
   //calculates dosage
   //takes in weight, high dosage, low dosage, units, and if weight is in lb or kg
   //returns list with [dosage string, unit string, calculated low dosage, calculated high dosage]
