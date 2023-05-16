@@ -148,9 +148,10 @@ class DrugListPageState extends State<DrugPage> {
                                           height: 100,
                                           child: TextFormField(
                                             controller: textController,
-                                            keyboardType: TextInputType.number,
-                                            inputFormatters: <
-                                                TextInputFormatter>[
+                                            keyboardType: const TextInputType
+                                                    .numberWithOptions(
+                                                decimal: true),
+                                            inputFormatters: <TextInputFormatter>[
                                               FilteringTextInputFormatter.allow(
                                                 RegExp(r'(^\d*\.?\d*)'),
                                               ),
