@@ -447,11 +447,11 @@ class DosagePage extends StatelessWidget {
                             Text("Disclaimer: ",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.bold)),
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
                             Text(
                                 "This site is for veterinarians only. Ongoing changes in information and the possibility of human error require that the user exercise judgment when utilizing this information and, if necessary, consult and compare information from other sources. The reader is advised to check the drug's product insert before prescribing or administering a drug to a patient.",
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 20)),
+                                style: TextStyle(fontSize: 15)),
                           ]),
                         ),
                       ],
