@@ -249,6 +249,7 @@ class DrugListPageState extends State<DrugPage> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
+                                            maintainState: false,
                                             builder: (context) =>
                                                 const DosagePage()),
                                       );
