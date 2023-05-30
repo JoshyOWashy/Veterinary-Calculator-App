@@ -294,11 +294,7 @@ class DrugListPageState extends State<DrugPage> {
                   child: IconButton(
                     icon: const Icon(Icons.home),
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MyHomePage()),
-                      );
+                      Navigator.pop(context);
                     },
                     iconSize: 45,
                   ),
