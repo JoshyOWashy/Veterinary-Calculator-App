@@ -480,10 +480,13 @@ class DosagePage extends StatelessWidget {
               child: IconButton(
                 icon: const Icon(Icons.home),
                 onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyHomePage()),
-                  );
+                  appState.curDrug = '';
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  // Navigator.pushReplacement(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const MyHomePage()),
+                  // );
                 },
                 iconSize: 45,
               ),
