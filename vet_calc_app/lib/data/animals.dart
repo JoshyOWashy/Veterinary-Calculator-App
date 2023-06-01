@@ -3,6 +3,8 @@ import 'package:vet_calc_app/ui/custom_icons.dart';
 
 enum Animal { equine, sheepGoat, camelid, swine, cattle, dog, cat }
 
+//returns a string for each animal that is the exact string for the animals
+//on the database
 String animalToString(Animal animal) {
   switch (animal) {
     case Animal.equine:
@@ -24,6 +26,7 @@ String animalToString(Animal animal) {
   }
 }
 
+//returns an Icon widget for each animal
 Widget animalIcon(Animal animal) {
   switch (animal) {
     case Animal.equine:

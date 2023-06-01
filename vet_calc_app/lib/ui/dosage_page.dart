@@ -16,9 +16,11 @@ class DosagePage extends StatelessWidget {
     return event.snapshot.value;
   }
 
-  //calculates dosage
-  //takes in weight, high dosage, low dosage, units, and if weight is in lb or kg
-  //returns list with [dosage string, unit string, calculated low dosage, calculated high dosage]
+  /* 
+    calculates dosage
+    takes in weight, dosages array, and a bool object to see if the user selected pounds
+    returns list with [string to be displayed, list of dossages for concentration calculations]
+  */
   List getDosage(double weight, var dosageList, bool isLbs) {
     //counter to add or's in the string
     var orCounter = 1;
@@ -40,18 +42,19 @@ class DosagePage extends StatelessWidget {
       double highDosage = object['high'].toDouble();
       double lowDosage = object['low'].toDouble();
 
-      //extract the kg fro mthe units so it only has useful units
+      //extract the kg from the units so it only has useful units
       int kgIdx = object['units'].indexOf("kg");
       String beforeKgString = object['units'].substring(0, kgIdx - 1);
       String afterKgString = object['units'].substring(kgIdx + 2);
 
       String unitSubstring = beforeKgString + afterKgString;
 
-      //calculate the dosage
+      //  calculate the dosage
+      //  check if there is a range of dosages or if its just a single dosage calculation
       if (highDosage == lowDosage) {
         double dosage = weight * highDosage;
 
-        //rounding to 3 to fix double to string conversions
+        //check if there is a name object for drug combinations with multiple drugs with seperate concentrations
         name == null
             ? dosageString =
                 "$dosageString ${dosage.toStringAsFixed(3)} $unitSubstring\n"
@@ -67,7 +70,7 @@ class DosagePage extends StatelessWidget {
         double low = (weight * lowDosage);
         double high = weight * highDosage;
 
-        //rounding to 3 to fix double to string conversions
+        //check if there is a name object for drug combinations with multiple drugs with seperate concentrations
         name == null
             ? dosageString =
                 "$dosageString ${low.toStringAsFixed(3)} - ${high.toStringAsFixed(3)} $unitSubstring\n"
@@ -77,7 +80,9 @@ class DosagePage extends StatelessWidget {
             {'low': low, 'high': high, 'units': unitSubstring, 'name': name});
       }
 
-      //add "or" if the dosages are not seperated from concentrations
+      //add "or" if the dosages are different and not in a range
+      //or wont be added to end of string since counter being checked agains
+      //dosage list length
       if (orCounter != dosageList.length && name == null) {
         dosageString = "$dosageString or\n";
       }
@@ -86,6 +91,14 @@ class DosagePage extends StatelessWidget {
     return [dosageString, dosageArray];
   }
 
+  /*
+    calculates concentration
+    
+    takes in a list of concentrations from the databae and list of dosages 
+    calculated from the getDosage() function
+
+    returns a string of concentration caclulations for output to screen
+  */
   String getConcentration(var concentration, var dosageArray) {
     String concentrationString = "";
     //counter to add or's in the string
@@ -120,12 +133,15 @@ class DosagePage extends StatelessWidget {
           newDosageUnits = "mEq";
         }
 
+        //store dosages into variables with converted dosages from ug to mg
         double lowConcentration = object["low"].toDouble();
         double highConcentration = object["high"].toDouble();
         double lowConcentrationConverted = object["low"].toDouble() * 1000.0;
         double highConcentrationConverted = object["high"].toDouble() * 1000.0;
 
-        //if the concentration is the same
+        //check if concentrations are are in a range or not
+        //check if concentation units are in mg or ug
+        //check if dosages are in a range or not
         if (lowConcentration == highConcentration) {
           //if concentration units are mg while dosage units are µg
           if (concentrationUnits == "mg" && newDosageUnits == "µg") {
@@ -165,6 +181,10 @@ class DosagePage extends StatelessWidget {
           }
         }
       }
+
+      //add an "or" when there are multiple concentrations and add to counter
+      //or is not added to the end of string by checking counter isnt longer
+      //than concentration list length
       if (orCounter != concentration.length) {
         concentrationString = "$concentrationString or\n";
       }
@@ -173,19 +193,35 @@ class DosagePage extends StatelessWidget {
     return concentrationString;
   }
 
+  /*
+    calculates concentration for drug combinations with multiple drugs and
+    seperated concentrations
+    
+    takes in a list of concentrations from the databae and list of dosages 
+    calculated from the getDosage() function
+
+    returns a string of concentration caclulations for output to screen
+  */
   String getConcentrationSeperated(var concentration, var dosageArray) {
     String concentrationString = "";
 
+    //iterate over concentration list
     for (var i = 0; i < concentration.length; i++) {
       String name = "";
       concentration[i]['name'] != null
           ? name = "${concentration[i]['name']}:"
           : name = "";
 
+      //get high and low dosages from each dosage
+
+      //since the drug is a combination with seperate dosages and concentrations,
+      //the drugs have one concentration and dosage so we use the same index for
+      //the dosage list
       var lowDosage = dosageArray[i]['low'];
       var highDosage = dosageArray[i]['high'];
       bool sameDosage = true;
 
+      //check if dosage is in a range or not
       if (lowDosage != highDosage) {
         sameDosage = false;
       }
@@ -208,6 +244,7 @@ class DosagePage extends StatelessWidget {
         newDosageUnits = "mEq";
       }
 
+      //store dosages into variables with converted dosages from ug to mg
       double lowConcentration = concentration[i]["low"].toDouble();
       double highConcentration = concentration[i]["high"].toDouble();
       double lowConcentrationConverted =
@@ -215,9 +252,10 @@ class DosagePage extends StatelessWidget {
       double highConcentrationConverted =
           concentration[i]["high"].toDouble() * 1000.0;
 
-      //if the concentration is the same
+      //check if concentrations are are in a range or not
+      //check if concentation units are in mg or ug
+      //check if dosages are in a range or not
       if (lowConcentration == highConcentration) {
-        //if concentration units are mg while dosage units are µg
         if (concentrationUnits == "mg" && newDosageUnits == "µg") {
           if (sameDosage) {
             concentrationString =
@@ -261,6 +299,7 @@ class DosagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
+
     var animal = appState.curAnimal;
     var drugname = appState.curDrug;
     var weight = appState.curWeight;
@@ -279,6 +318,7 @@ class DosagePage extends StatelessWidget {
             // data has been loaded, build the widget tree
             var data = snapshot.data as List<dynamic>;
 
+            //check drug name is valid in the database
             var mainDrug;
             for (var drug in data) {
               if (drug['Name'] == drugname) {
@@ -286,14 +326,13 @@ class DosagePage extends StatelessWidget {
               }
             }
 
+            //check if user selected lbs or kg when selecting a drug
             var isLbs = false;
             if (weightunit == "lbs") {
               isLbs = true;
             }
 
             // dosage
-            // see if its a string to just output that or go to function
-
             // getDosage returns dosage string in [0] and dosage array in [1]
             // for concentration
             String dosageDisplay = "";
@@ -308,6 +347,9 @@ class DosagePage extends StatelessWidget {
             }
 
             // concentration
+            // if there are no concentrations display "N/A"
+            // otherwise check is concentrations are seperated or not and go to
+            // the correct function
             String concentrationDisplay = "";
             if (mainDrug['Concentration'] == null) {
               concentrationDisplay = "N/A";
@@ -322,6 +364,7 @@ class DosagePage extends StatelessWidget {
             }
 
             // notes
+            // if there are no notes display "N/A" display notes otherwise
             String notesDisplay;
 
             if (mainDrug['Notes'] == null) {
@@ -333,9 +376,6 @@ class DosagePage extends StatelessWidget {
             // weight
             Wrap weightText;
             if (isLbs) {
-              // weightText = Text(
-              //     "Weight: $weight $weightunit (${(weight * 0.453592).toStringAsFixed(2)} kg)",
-              //     style: const TextStyle(fontSize: 20));
               weightText = Wrap(alignment: WrapAlignment.center, children: [
                 const Text("Weight: ",
                     textAlign: TextAlign.center,
@@ -347,8 +387,6 @@ class DosagePage extends StatelessWidget {
                         fontSize: 20, fontWeight: FontWeight.bold))
               ]);
             } else {
-              // weightText = Text("Weight: $weight $weightunit",
-              //     style: const TextStyle(fontSize: 20));
               weightText = Wrap(alignment: WrapAlignment.center, children: [
                 const Text("Weight: ",
                     textAlign: TextAlign.center,
@@ -360,7 +398,7 @@ class DosagePage extends StatelessWidget {
               ]);
             }
 
-            // have a bunch of text here
+            // all the text being displayed
             return Center(
               child: Scrollbar(
                   controller: scrollController,
@@ -471,6 +509,8 @@ class DosagePage extends StatelessWidget {
           }
         },
       ),
+
+      //home button
       bottomNavigationBar: BottomAppBar(
           color: Theme.of(context).colorScheme.primaryContainer,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -481,12 +521,11 @@ class DosagePage extends StatelessWidget {
                 icon: const Icon(Icons.home),
                 onPressed: () {
                   appState.curDrug = '';
+
+                  //pop twice when home button is pressed to get back to
+                  //animal screen
                   Navigator.pop(context);
                   Navigator.pop(context);
-                  // Navigator.pushReplacement(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => const MyHomePage()),
-                  // );
                 },
                 iconSize: 45,
               ),

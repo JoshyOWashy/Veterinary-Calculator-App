@@ -56,6 +56,7 @@ class DrugListPageState extends State<DrugPage> {
                 });
 
                 // load dropdown box from database
+                // populate dropdown with drug names
                 List<DropdownMenuItem<String>> dropdownItems = [];
                 for (var drug in data) {
                   dropdownItems.add(
@@ -66,14 +67,7 @@ class DrugListPageState extends State<DrugPage> {
                   );
                 }
 
-                /*
-                  doesnt like when appState is called in build
-                */
-
-                // default dropdown value
-                // if (appState.curDrug.isEmpty && dropdownItems.isNotEmpty) {
-                //   appState.chooseDrug(dropdownItems.first.value.toString());
-                // }
+                //set dropdown value of drug dropdown to the first drug in the list
                 var drugDropDownValue = dropdownItems.first.value.toString();
 
                 return Center(
@@ -117,7 +111,7 @@ class DrugListPageState extends State<DrugPage> {
                                 return;
                               }
 
-                              // update current drug
+                              // update current drug when a new drug is selected
                               setState(() {
                                 appState.chooseDrug(newValue);
                               });
@@ -127,6 +121,7 @@ class DrugListPageState extends State<DrugPage> {
                           ),
                         ),
 
+                        // weight input text input field
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 35.0, vertical: 25.0),
@@ -195,8 +190,9 @@ class DrugListPageState extends State<DrugPage> {
                                             return;
                                           }
 
+                                          // update weight units when weight is
+                                          // entered
                                           setState(() {
-                                            // update weight units
                                             appState
                                                 .changeWeightUnits(newValue);
                                           });
@@ -239,13 +235,6 @@ class DrugListPageState extends State<DrugPage> {
                                       appState.changeWeightUnits(
                                           appState.curWeightUnits);
 
-                                      // ScaffoldMessenger.of(context)
-                                      //     .showSnackBar(
-                                      //   const SnackBar(
-                                      //       content:
-                                      //           Text('Calculation completed')),
-                                      // );
-
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -284,6 +273,8 @@ class DrugListPageState extends State<DrugPage> {
               }
             },
           ),
+
+          //home button
           bottomNavigationBar: BottomAppBar(
               color: Theme.of(context).colorScheme.primaryContainer,
               child:
@@ -294,6 +285,8 @@ class DrugListPageState extends State<DrugPage> {
                   child: IconButton(
                     icon: const Icon(Icons.home),
                     onPressed: () {
+                      //pop once when home button is pressed to get back to
+                      //animal screen
                       Navigator.pop(context);
                     },
                     iconSize: 45,

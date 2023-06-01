@@ -41,26 +41,31 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
+  //set default states
   var curAnimal = "";
   var curDrug = "";
   var curWeight = 0.0;
   var curWeightUnits = "kg";
 
+  //set the animal state
   void chooseAnimal(Animal animal) {
     curAnimal = animalToString(animal);
     notifyListeners();
   }
 
+  //sets the drug state
   void chooseDrug(String drug) {
     curDrug = drug;
     notifyListeners();
   }
 
+  //sets the weight state
   void chooseWeight(String weight) {
     curWeight = double.parse(weight);
     notifyListeners();
   }
 
+  //set the weight units state
   void changeWeightUnits(String units) {
     if (units == "lbs") {
       saveWeightPreference(true);
@@ -72,6 +77,7 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  //set preference for weight units so they stay the same throughout app use
   void saveWeightPreference(bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     // set to true for lbs, false for kg

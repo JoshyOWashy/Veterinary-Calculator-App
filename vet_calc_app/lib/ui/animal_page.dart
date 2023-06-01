@@ -14,6 +14,8 @@ class AnimalPage extends StatelessWidget {
 
     final List<Widget> animalButtons = [];
 
+    //iterate over Animal Enum from /lib/data/animals.dart
+    //get the string and icon the each animal and create a button for each animal
     for (final animal in Animal.values) {
       final animalName = animalToString(animal);
       final icon = animalIcon(animal);
