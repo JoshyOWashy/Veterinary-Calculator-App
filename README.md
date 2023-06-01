@@ -76,7 +76,7 @@ flutter devices
 
 ## Repository Navigation
 
-All of the files for the UI of the app is located at `vet_calc_app/lib` with the different screens being in `ui`. Files for specific runners such as android and ios are located in `vet_calc_app` in their corresponding folders.
+All of the files for the UI of the app is located at `vet_calc_app/lib` with the different screens being in `ui`. Files for specific runners such as android and ios are located in `vet_calc_app` in their corresponding folders. The documentation for the database is within `vet_calc_app/docs/database.md
 
 ## License
 
