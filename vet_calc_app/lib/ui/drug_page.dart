@@ -235,6 +235,8 @@ class DrugListPageState extends State<DrugPage> {
                                       appState.changeWeightUnits(
                                           appState.curWeightUnits);
 
+                                      FocusScope.of(context).unfocus();
+
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
