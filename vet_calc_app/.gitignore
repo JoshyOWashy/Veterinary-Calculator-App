@@ -6,9 +6,11 @@
 .DS_Store
 ../.DS_Store
 .atom/
+.build/
 .buildlog/
 .history
 .svn/
+.swiftpm/
 migrate_working_dir/
 /lib/data/firebase_options.dart
 vet_calc_app/lib/data/firebase_options.dart
