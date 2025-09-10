@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         title: appName,
         theme: ThemeData(
           scrollbarTheme: ScrollbarThemeData(
-            thumbColor: MaterialStateProperty.all(Colors.grey[800]),
+            thumbColor: WidgetStateProperty.all(Colors.grey[800]),
           ),
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(

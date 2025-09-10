@@ -104,7 +104,7 @@ class DrugListPageState extends State<DrugPage> {
                                 ),
                               ),
                             ),
-                            value: drugDropDownValue,
+                            initialValue: drugDropDownValue,
                             onChanged: (String? newValue) {
                               if (newValue == null ||
                                   newValue == appState.curDrug) {
@@ -144,7 +144,7 @@ class DrugListPageState extends State<DrugPage> {
                                           child: TextFormField(
                                             controller: textController,
                                             keyboardType: const TextInputType
-                                                    .numberWithOptions(
+                                                .numberWithOptions(
                                                 decimal: true),
                                             inputFormatters: <TextInputFormatter>[
                                               FilteringTextInputFormatter.allow(
@@ -182,7 +182,7 @@ class DrugListPageState extends State<DrugPage> {
                                             ),
                                           ),
                                         ),
-                                        value: appState.curWeightUnits,
+                                        initialValue: appState.curWeightUnits,
                                         onChanged: (String? newValue) {
                                           if (newValue == null ||
                                               newValue ==
